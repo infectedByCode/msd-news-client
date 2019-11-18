@@ -21,7 +21,7 @@ class App extends Component {
         <Router>
           <Homepage path="/" />
           <SingleTopic path="/topic/:topic" />
-          <SingleArticle path="/articles/:id" />
+          <SingleArticle currentUser={currentUser} path="/articles/:id" />
         </Router>
       </div>
     );

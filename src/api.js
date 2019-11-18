@@ -19,6 +19,12 @@ export const getCommentsByArticleId = async id => {
   return data.comments
 }
 
+export const postCommentByArticleId = async (id, body, username) => {
+  const { data } = await axios.post(`${baseUrl}/articles/${id}/comments`, { username, body })
+
+  return data.comment
+}
+
 export const getTopics = async () => {
   const { data } = await axios.get(`${baseUrl}/topics`)
   return data.topics

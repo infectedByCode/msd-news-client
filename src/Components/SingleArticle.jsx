@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import Timestamp from 'react-timestamp';
 import * as api from '../api';
 import CommentsList from './CommentsList';
+import CommentForm from './CommentForm';
 
 class SingleArticle extends Component {
   state = {
@@ -12,9 +13,11 @@ class SingleArticle extends Component {
   render() {
     const { title, body, votes, topic, author, comment_count, created_at } = this.state.article;
     const { comments } = this.state;
+    const { currentUser, id } = this.props;
 
     return (
       <section>
+        {/* Change it to be a component */}
         <h2>
           newsbits/{topic}
         </h2>
@@ -36,6 +39,7 @@ class SingleArticle extends Component {
           <Timestamp relative date={created_at} />
         </article>
         <main>
+          <CommentForm currentUser={currentUser} id={id} renderNewComment={this.renderNewComment} />
           <CommentsList comments={comments} />
         </main>
       </section>
@@ -47,8 +51,8 @@ class SingleArticle extends Component {
     this.fetchComments();
   }
 
-  componentDidUpdate(prevProps) {
-    if (prevProps.id !== this.props.id) {
+  componentDidUpdate(prevProps, prevState) {
+    if (prevProps.id !== this.props.id || prevState.comments !== this.state.comments) {
       this.fetchArticle();
     }
   }
@@ -63,6 +67,12 @@ class SingleArticle extends Component {
     const { id } = this.props;
 
     api.getCommentsByArticleId(id).then(comments => this.setState({ comments }));
+  };
+
+  renderNewComment = comment => {
+    this.setState(currentState => {
+      return { comments: [comment, ...currentState.comments] };
+    });
   };
 }
 
