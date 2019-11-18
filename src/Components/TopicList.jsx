@@ -27,7 +27,9 @@ class TopicList extends Component {
             </h1>
           : <h3>Choose a newsbit</h3>}
         <ul>
-          <TopicCard topics={topicData} />
+          {topicData.map(topic => {
+            return <TopicCard key={topic.slug} topic={topic} />;
+          })}
         </ul>
       </aside>
     );
