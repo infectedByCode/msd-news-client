@@ -6,8 +6,8 @@ const TopicCard = props => {
 
   return topics.map(topic => {
     return (
-      <Link to={`/topic/${topic.slug}`}>
-        <li className='card' key={topic.slug}>
+      <Link key={topic.slug} to={`/topic/${topic.slug}`}>
+        <li className='card'>
           <h2>
             newsbits/{topic.slug}
           </h2>
