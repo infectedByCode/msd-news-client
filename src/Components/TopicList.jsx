@@ -27,7 +27,7 @@ class TopicList extends Component {
             </h1>
           : <h3>Choose a newsbit</h3>}
         <ul>
-          <TopicCard topics={topicData} onClick={this.handleClick} />
+          <TopicCard topics={topicData} />
         </ul>
       </aside>
     );
@@ -39,10 +39,6 @@ class TopicList extends Component {
 
   fetchTopicData = () => {
     api.getTopics().then(topicData => this.setState({ topicData, isLoading: false }));
-  };
-
-  handleClick = e => {
-    console.log('he');
   };
 }
 
