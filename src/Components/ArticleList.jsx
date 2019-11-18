@@ -29,7 +29,9 @@ class ArticleList extends Component {
             </h1>
           : <h3>Articles</h3>}
         <ul className="list">
-          <ArticleCard articles={articleData} className="article-card" />
+          {articleData.map(article => {
+            return <ArticleCard article={article} key={article.id} className="article-card" />;
+          })}
         </ul>
       </main>
     );
