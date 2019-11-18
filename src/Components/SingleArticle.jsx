@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import Timestamp from 'react-timestamp';
 import * as api from '../api';
+import CommentsList from './CommentsList';
 
 class SingleArticle extends Component {
   state = {
@@ -10,6 +11,7 @@ class SingleArticle extends Component {
 
   render() {
     const { title, body, votes, topic, author, comment_count, created_at } = this.state.article;
+    const { comments } = this.state;
 
     return (
       <section>
@@ -33,7 +35,9 @@ class SingleArticle extends Component {
           </p>
           <Timestamp relative date={created_at} />
         </article>
-        <main />
+        <main>
+          <CommentsList comments={comments} />
+        </main>
       </section>
     );
   }
