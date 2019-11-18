@@ -1,3 +1,13 @@
+* {
+  padding: 0;
+  margin: 0;
+}
+
+:root {
+  --list-bg-color: coral;
+  --card-bg-color: beige;
+}
+
 .App {
   text-align: center;
 }
@@ -19,4 +29,25 @@
 
 .App-link {
   color: #09d3ac;
+}
+
+#loadingGif {
+  margin: 0 auto;
+}
+
+#homepage-layout {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+}
+
+.list {
+  display: grid;
+  grid-template-columns: auto;
+  background-color: var(--list-bg-color);
+}
+
+.card {
+  list-style: none;
+  background-color: var(--card-bg-color);
+  margin: 1.5%;
 }

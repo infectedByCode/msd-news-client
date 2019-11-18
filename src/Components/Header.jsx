@@ -3,9 +3,12 @@ import { Link } from '@reach/router'
 
 const Header = () => {
   return (
-    <nav>
-      <Link to='/'>Home</Link>
-    </nav>
+    <header>
+      <nav>
+        <Link to='/'>Home</Link>
+      </nav>
+      <h1>Welcome to NewsBits</h1>
+    </header>
   )
 }
 
