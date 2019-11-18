@@ -8,7 +8,8 @@
     "cors": "^2.8.5",
     "react": "^16.12.0",
     "react-dom": "^16.12.0",
-    "react-scripts": "3.2.0"
+    "react-scripts": "3.2.0",
+    "react-timestamp": "^5.1.0"
   },
   "scripts": {
     "start": "react-scripts start",
