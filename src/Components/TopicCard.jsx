@@ -6,9 +6,10 @@ const TopicCard = props => {
 
   return (
     <Link to={`/topic/${topic.slug}`}>
-      <li className='card'>
+      <li className='topic-card'>
         <h2>
-          newsbits/{topic.slug}
+          <span>newsBits/</span>
+          {topic.slug}
         </h2>
         <h3>
           {topic.description}
