@@ -2,10 +2,13 @@ import React, { Component } from 'react';
 import * as api from '../api';
 
 import ArticleCard from './ArticleCard';
+import ArticleSelect from './ArticleSelect';
 
 class ArticleList extends Component {
   state = {
     articleData: [],
+    sort_by: 'created_at',
+    order: 'desc',
     isLoading: true
   };
 
@@ -23,11 +26,14 @@ class ArticleList extends Component {
 
     return (
       <main>
-        {this.props.topic
-          ? <h1>
-              newsbits/{this.props.topic}
-            </h1>
-          : <h3>Articles</h3>}
+        <div id="article-sub-menu">
+          {this.props.topic
+            ? <h1>
+                newsbits/{this.props.topic}
+              </h1>
+            : <h3>Articles</h3>}
+          <ArticleSelect updateSort={this.updateSort} />
+        </div>
         <ul className="list">
           {articleData.map(article => {
             return <ArticleCard article={article} key={article.id} className="article-card" />;
@@ -41,13 +47,25 @@ class ArticleList extends Component {
     this.fetchArticleData();
   }
 
-  componentDidUpdate(prevProps) {
-    if (prevProps.topic !== this.props.topic) this.fetchArticleData();
+  componentDidUpdate(prevProps, prevState) {
+    if (
+      prevProps.topic !== this.props.topic ||
+      prevState.sort_by !== this.state.sort_by ||
+      prevState.order !== this.state.order
+    ) {
+      this.fetchArticleData();
+    }
   }
 
   fetchArticleData = () => {
     const { topic } = this.props;
-    api.getArticles(topic).then(articleData => this.setState({ articleData, isLoading: false }));
+    const { sort_by, order } = this.state;
+
+    api.getArticles(topic, sort_by, order).then(articleData => this.setState({ articleData, isLoading: false }));
+  };
+
+  updateSort = (sort_by, order) => {
+    this.setState({ sort_by, order });
   };
 }
 
