@@ -1,4 +1,5 @@
 import React from 'react'
+import 'bootstrap/dist/css/bootstrap.min.css'
 import './App.css'
 import { Router } from '@reach/router'
 import Header from './Components/Header'
