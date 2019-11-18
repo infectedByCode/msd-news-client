@@ -11,8 +11,11 @@ class CommentForm extends Component {
 
     return (
       <form onSubmit={this.handleSubmit}>
-        <textarea value={commentInput} onChange={this.handleInput} required />
-        <button>Post Comment</button>
+        <label>
+          Having something to say....?
+          <textarea value={commentInput} onChange={this.handleInput} required />
+        </label>
+        <button className="btn-primary">Post Comment</button>
       </form>
     );
   }

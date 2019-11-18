@@ -5,7 +5,7 @@ const CommentCard = props => {
   const { author, votes, created_at, body } = props.comment
 
   return (
-    <li>
+    <li className='comment-card'>
       <h5>
         {author}
       </h5>

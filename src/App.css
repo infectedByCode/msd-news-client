@@ -37,6 +37,8 @@
   color: #09d3ac;
 }
 
+/* General layout */
+
 header nav {
   display: grid;
   grid-template-columns: 4fr 1fr 1fr 1fr;
@@ -83,6 +85,7 @@ aside {
   grid-template-columns: 2fr 1fr;
 }
 
+/* Lists and Cards for topics and articles */
 .list {
   display: grid;
   grid-template-columns: auto;
@@ -136,4 +139,54 @@ aside {
 
 .topic-card h3 {
   font-size: 1.5rem;
+}
+
+/* Article Comments Layout */
+/* Article */
+section article {
+  width: 60%;
+  margin: 0 auto;
+}
+
+section article h4 {
+  text-align: justify;
+}
+/* COMMENTS */
+ul {
+  display: grid;
+  grid-template-columns: auto;
+  width: 60%;
+  margin: 0 auto;
+  padding: 0 2%;
+  background-color: var(--list-bg-color);
+}
+
+.comment-card {
+  background-color: var(--card-bg-color);
+  width: 100%;
+  margin: 2% auto;
+  list-style: none;
+}
+
+/* FORM */
+form {
+  width: 60%;
+  margin: 0 auto;
+  padding: 2% 0;
+}
+
+form label,
+form textarea {
+  display: block;
+  text-align: left;
+  margin: inherit;
+  width: 100%;
+  min-height: 200px;
+}
+
+form .btn-primary {
+  width: 40%;
+  line-height: 2.5rem;
+  border-radius: 10px;
+  margin: 1% 0;
 }

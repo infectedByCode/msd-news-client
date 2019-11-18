@@ -7,13 +7,23 @@ import CommentForm from './CommentForm';
 class SingleArticle extends Component {
   state = {
     article: {},
-    comments: []
+    comments: [],
+    isLoading: true
   };
 
   render() {
     const { title, body, votes, topic, author, comment_count, created_at } = this.state.article;
-    const { comments } = this.state;
+    const { comments, isLoading } = this.state;
     const { currentUser, id } = this.props;
+
+    if (isLoading)
+      return (
+        <img
+          id="loadingGif"
+          src="https://upload.wikimedia.org/wikipedia/commons/c/c7/Loading_2.gif"
+          alt="loading page"
+        />
+      );
 
     return (
       <section>
@@ -60,7 +70,7 @@ class SingleArticle extends Component {
   fetchArticle = () => {
     const { id } = this.props;
 
-    api.getArticleById(id).then(article => this.setState({ article }));
+    api.getArticleById(id).then(article => this.setState({ article, isLoading: false }));
   };
 
   fetchComments = () => {
