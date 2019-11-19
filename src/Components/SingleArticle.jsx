@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import Timestamp from 'react-timestamp';
 import { Alert } from 'react-bootstrap';
+import { TiArrowUpOutline, TiArrowDownOutline } from 'react-icons/ti';
 import * as api from '../api';
 import CommentsList from './CommentsList';
 import CommentForm from './CommentForm';
@@ -50,6 +51,10 @@ class SingleArticle extends Component {
           </p>
           <Timestamp relative date={created_at} />
         </article>
+        <div className="vote-icons">
+          <TiArrowUpOutline id="upvote-icon" onClick={this.handleVoteClick} />
+          <TiArrowDownOutline id="downvote-icon" onClick={this.handleVoteClick} />
+        </div>
         <main>
           {loggedIn
             ? <CommentForm currentUser={currentUser} id={id} renderNewComment={this.renderNewComment} />
@@ -97,6 +102,21 @@ class SingleArticle extends Component {
 
   toggleCommentDeleted = () => {
     this.setState(currentState => ({ commentDeleted: !currentState.commentDeleted }));
+  };
+
+  handleVoteClick = e => {
+    const { id } = this.props;
+    const vote = e.target.id === 'upvote-icon' ? 1 : -1;
+
+    // Update DB
+    api.patchArticleById(id, vote);
+    // Set state using shallow copy for speed.
+    this.setState(currentState => {
+      const articleCopy = { ...currentState.article };
+      articleCopy.votes += vote;
+
+      return { article: articleCopy };
+    });
   };
 }
 

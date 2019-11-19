@@ -148,6 +148,10 @@ section article {
   margin: 0 auto;
 }
 
+.vote-icons {
+  font-size: 3rem;
+}
+
 section article h4 {
   text-align: justify;
 }

@@ -4,6 +4,7 @@ import Timestamp from 'react-timestamp'
 
 const ArticleCard = props => {
   const { article } = props
+
   return (
     <Link to={`/articles/${article.id}`}>
       <li className='card' id='article-list'>

@@ -13,6 +13,12 @@ export const getArticleById = async id => {
   return data.article
 }
 
+export const patchArticleById = async (id, vote) => {
+  const { data } = await axios.patch(`${baseUrl}/articles/${id}`, { inc_votes: vote })
+
+  return data.article
+}
+
 export const getCommentsByArticleId = async id => {
   const { data } = await axios.get(`${baseUrl}/articles/${id}/comments`)
 
