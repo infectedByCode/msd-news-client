@@ -1,5 +1,4 @@
 import React from 'react'
-import { Button } from 'react-bootstrap'
 import Timestamp from 'react-timestamp'
 import * as api from '../api'
 
@@ -47,9 +46,9 @@ const CommentCard = props => {
       </div>
       <Timestamp relative date={created_at} />
       {currentUser === author
-        ? <Button variant='danger' onClick={handleClick}>
+        ? <button className='btn-danger' onClick={handleClick}>
             Delete
-          </Button>
+          </button>
         : /* upvote render */ ''}
     </li>
   )

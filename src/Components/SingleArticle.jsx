@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import Timestamp from 'react-timestamp';
-import { Alert, Button } from 'react-bootstrap';
+import { Alert } from 'react-bootstrap';
 import * as api from '../api';
 import CommentsList from './CommentsList';
 import CommentForm from './CommentForm';
@@ -75,9 +75,9 @@ class SingleArticle extends Component {
             </button>
           </div>
           {currentUser === author &&
-            <Button variant="danger" onClick={this.handleDeleteComment}>
+            <button className="btn-danger" onClick={this.handleDeleteComment}>
               Delete
-            </Button>}
+            </button>}
         </article>
         <section>
           {loggedIn
