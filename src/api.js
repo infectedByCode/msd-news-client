@@ -13,6 +13,17 @@ export const getArticleById = async id => {
   return data.article
 }
 
+export const postArticle = async (title, body, author, topic) => {
+  const { data } = await axios.post(`${baseUrl}/articles`, {
+    author: 'jessjelly',
+    title: 'random',
+    body: 'raaaaagghm',
+    topic: 'coding'
+  })
+
+  return data.article
+}
+
 export const patchArticleById = async (id, vote) => {
   const { data } = await axios.patch(`${baseUrl}/articles/${id}`, { inc_votes: vote })
 
@@ -20,7 +31,6 @@ export const patchArticleById = async (id, vote) => {
 }
 
 export const deleteArticleById = async id => {
-  console.log(id)
   const data = await axios.delete(`${baseUrl}/articles/${id}`)
 
   return data.status

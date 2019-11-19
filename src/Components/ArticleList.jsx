@@ -3,6 +3,7 @@ import * as api from '../api';
 
 import ArticleCard from './ArticleCard';
 import ArticleSelect from './ArticleSelect';
+import ArticleForm from './ArticleForm';
 
 class ArticleList extends Component {
   state = {
@@ -14,6 +15,7 @@ class ArticleList extends Component {
 
   render() {
     const { articleData, isLoading } = this.state;
+    const { currentUser, loggedIn } = this.props;
 
     if (isLoading)
       return (
@@ -33,6 +35,7 @@ class ArticleList extends Component {
               </h1>
             : <h3>Articles</h3>}
           <ArticleSelect updateSort={this.updateSort} />
+          {loggedIn && <ArticleForm currentUser={currentUser} />}
         </div>
         <ul className="list">
           {articleData.map(article => {

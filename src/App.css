@@ -187,19 +187,27 @@ ul {
   margin: 1% auto;
 }
 
-/* FORM */
+/* FORMS */
 form {
-  width: 60%;
+  width: 80%;
   margin: 0 auto;
   padding: 2% 0;
 }
+form label {
+  width: 100%;
+  margin: 0 auto;
+}
 
-form label,
-form textarea {
+form textarea,
+form input,
+form select {
   display: block;
   text-align: left;
   margin: inherit;
   width: 100%;
+}
+
+form textarea {
   min-height: 200px;
 }
 
