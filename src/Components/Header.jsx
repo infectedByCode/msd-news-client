@@ -2,7 +2,11 @@ import React from 'react'
 import { Link } from '@reach/router'
 
 const Header = props => {
-  const { currentUser, loggedIn } = props
+  const { currentUser, loggedIn, handleSignIn } = props
+
+  const handleClick = e => {
+    handleSignIn('jessjelly')
+  }
 
   return (
     <header>
@@ -11,10 +15,11 @@ const Header = props => {
           newsBits
         </Link>
         <Link to='/'>Home</Link>
-        <Link to='/'>
+
+        <Link to='#'>
           {currentUser ? `Logged in as ${currentUser}` : 'Sign Up'}
         </Link>
-        <Link to='/'>
+        <Link to='#' onClick={handleClick}>
           {loggedIn ? 'Log off' : 'Log in'}
         </Link>
       </nav>

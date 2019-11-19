@@ -17,7 +17,7 @@ class App extends Component {
     const { currentUser, loggedIn } = this.state;
     return (
       <div className="App">
-        <Header currentUser={currentUser} loggedIn={loggedIn} />
+        <Header currentUser={currentUser} loggedIn={loggedIn} handleSignIn={this.handleSignIn} />
         <Router>
           <Homepage currentUser={currentUser} loggedIn={loggedIn} path="/" />
           <SingleTopic path="/topic/:topic" />
@@ -26,6 +26,13 @@ class App extends Component {
       </div>
     );
   }
+
+  handleSignIn = user => {
+    this.setState(currentState => {
+      if (currentState.currentUser) return { currentUser: '', loggedIn: false };
+      else return { currentUser: user, loggedIn: true };
+    });
+  };
 }
 
 export default App;
