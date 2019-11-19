@@ -4,12 +4,11 @@ import Timestamp from 'react-timestamp'
 import * as api from '../api'
 
 const CommentCard = props => {
-  const { author, created_at, body, comment_id } = props.comment
-  let { votes } = props.comment
+  const { author, created_at, votes, body, comment_id } = props.comment
   const { currentUser, fetchComments, toggleCommentDeleted } = props
 
   const handleClick = () => {
-    api.deleteCommentByArticleId(comment_id).then(status => {
+    api.deleteCommentById(comment_id).then(status => {
       if (status === 204) {
         fetchComments(props.article_id)
         toggleCommentDeleted()
@@ -17,13 +16,12 @@ const CommentCard = props => {
     })
     setTimeout(toggleCommentDeleted, 3000)
   }
-
+  // Remake as component for voting
   const handleVote = e => {
-    const vote = e.target.id === 'upvote-icon' ? 1 : -1
-    vote > 0 ? (votes += vote) : votes--
+    const vote = e.target.id === 'upvote' ? 1 : -1
+    // vote > 0 ? votes++ : votes--
     // Update DB
-    // api.patchArticleById(id, vote)
-    alert(votes)
+    api.patchCommentById(comment_id, vote).then(console.log)
   }
 
   return (

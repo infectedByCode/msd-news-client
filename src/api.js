@@ -19,6 +19,13 @@ export const patchArticleById = async (id, vote) => {
   return data.article
 }
 
+export const deleteArticleById = async id => {
+  console.log(id)
+  const data = await axios.delete(`${baseUrl}/articles/${id}`)
+
+  return data.status
+}
+
 export const getCommentsByArticleId = async id => {
   const { data } = await axios.get(`${baseUrl}/articles/${id}/comments`)
 
@@ -31,10 +38,16 @@ export const postCommentByArticleId = async (id, body, username) => {
   return data.comment
 }
 
-export const deleteCommentByArticleId = async id => {
+export const deleteCommentById = async id => {
   const data = await axios.delete(`${baseUrl}/comments/${id}`)
 
   return data.status
+}
+
+export const patchCommentById = async (id, vote) => {
+  const { data } = await axios.patch(`${baseUrl}/comments/${id}`, { inc_votes: vote })
+
+  return data.comment
 }
 
 export const getTopics = async () => {

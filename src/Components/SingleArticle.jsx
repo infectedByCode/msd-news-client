@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
 import Timestamp from 'react-timestamp';
-import { Alert } from 'react-bootstrap';
+import { Alert, Button } from 'react-bootstrap';
 import * as api from '../api';
 import CommentsList from './CommentsList';
 import CommentForm from './CommentForm';
+import { navigate } from '@reach/router';
 
 class SingleArticle extends Component {
   state = {
@@ -12,6 +13,17 @@ class SingleArticle extends Component {
     isLoading: true,
     commentDeleted: false
   };
+
+  componentDidMount() {
+    this.fetchArticle();
+    this.fetchComments();
+  }
+
+  componentDidUpdate(prevProps, prevState) {
+    if (prevProps.id !== this.props.id || prevState.comments !== this.state.comments) {
+      this.fetchArticle();
+    }
+  }
 
   render() {
     const { title, body, votes, topic, author, comment_count, created_at } = this.state.article;
@@ -28,7 +40,7 @@ class SingleArticle extends Component {
       );
 
     return (
-      <section>
+      <main>
         {/* Change it to be a component */}
         <h2>
           newsbits/{topic}
@@ -49,17 +61,21 @@ class SingleArticle extends Component {
             comments:{comment_count}
           </p>
           <Timestamp relative date={created_at} />
+          <div>
+            <button id="upvote" className="vote-btn" onClick={this.handleVoteClick}>
+              +
+            </button>
+
+            <button id="downvote" className="vote-btn" onClick={this.handleVoteClick}>
+              -
+            </button>
+          </div>
+          {currentUser === author &&
+            <Button variant="danger" onClick={this.handleDeleteComment}>
+              Delete
+            </Button>}
         </article>
-
-        <button id="upvote" className="vote-btn" onClick={this.handleVoteClick}>
-          +
-        </button>
-
-        <button id="downvote" className="vote-btn" onClick={this.handleVoteClick}>
-          -
-        </button>
-
-        <main>
+        <section>
           {loggedIn
             ? <CommentForm currentUser={currentUser} id={id} renderNewComment={this.renderNewComment} />
             : <Alert variant="danger">Please log in to post comments!</Alert>}
@@ -70,20 +86,9 @@ class SingleArticle extends Component {
             currentUser={currentUser}
             toggleCommentDeleted={this.toggleCommentDeleted}
           />
-        </main>
-      </section>
+        </section>
+      </main>
     );
-  }
-
-  componentDidMount() {
-    this.fetchArticle();
-    this.fetchComments();
-  }
-
-  componentDidUpdate(prevProps, prevState) {
-    if (prevProps.id !== this.props.id || prevState.comments !== this.state.comments) {
-      this.fetchArticle();
-    }
   }
 
   fetchArticle = () => {
@@ -119,6 +124,13 @@ class SingleArticle extends Component {
       vote === 1 ? articleCopy.votes++ : articleCopy.votes--;
 
       return { article: articleCopy };
+    });
+  };
+
+  handleDeleteComment = () => {
+    const { id } = this.props;
+    api.deleteArticleById(id).then(status => {
+      if (status === 204) navigate('/');
     });
   };
 }
