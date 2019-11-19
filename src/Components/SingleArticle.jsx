@@ -63,11 +63,11 @@ class SingleArticle extends Component {
           <Timestamp relative date={created_at} />
           <div>
             <button id="upvote" className="vote-btn" onClick={this.handleVoteClick}>
-              +
+              &#8679;
             </button>
 
             <button id="downvote" className="vote-btn" onClick={this.handleVoteClick}>
-              -
+              &#8681;
             </button>
           </div>
           {currentUser === author &&
