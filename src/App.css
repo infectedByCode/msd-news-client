@@ -8,6 +8,10 @@ object {
   pointer-events: none;
 }
 
+/* rgba(131, 58, 180, 1) purple
+rgba(253, 29, 29, 1) red
+rgba(252, 176, 69, 1) orange */
+
 :root {
   /* Backgrounds */
   --list-bg-color: slategrey;
@@ -220,6 +224,21 @@ form .btn-primary {
 .alert-danger {
   width: 60%;
   margin: 1% auto;
+}
+
+/* ERRORS */
+.error-page {
+  height: 100%;
+  background: rgb(131, 58, 180);
+  background: linear-gradient(90deg, rgba(131, 58, 180, 1) 0%, rgba(253, 29, 29, 1) 50%, rgba(252, 176, 69, 1) 100%);
+}
+
+.error-page h2,
+.error-page h3,
+.error-page p,
+.error-page a {
+  font-family: 'Press Start 2P' !important;
+  font-size: 1.5em;
 }
 
 /* MOBILE RESPONSIVENESS */
