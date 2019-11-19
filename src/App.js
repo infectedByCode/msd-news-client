@@ -9,8 +9,8 @@ import SingleArticle from './Components/SingleArticle';
 
 class App extends Component {
   state = {
-    currentUser: 'jessjelly',
-    loggedIn: true
+    currentUser: '',
+    loggedIn: false
   };
 
   render() {
@@ -21,7 +21,7 @@ class App extends Component {
         <Router>
           <Homepage path="/" />
           <SingleTopic path="/topic/:topic" />
-          <SingleArticle currentUser={currentUser} path="/articles/:id" />
+          <SingleArticle currentUser={currentUser} loggedIn={loggedIn} path="/articles/:id" />
         </Router>
       </div>
     );

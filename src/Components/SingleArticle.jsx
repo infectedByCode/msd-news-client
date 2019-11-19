@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import Timestamp from 'react-timestamp';
+import { Alert } from 'react-bootstrap';
 import * as api from '../api';
 import CommentsList from './CommentsList';
 import CommentForm from './CommentForm';
@@ -14,7 +15,7 @@ class SingleArticle extends Component {
   render() {
     const { title, body, votes, topic, author, comment_count, created_at } = this.state.article;
     const { comments, isLoading } = this.state;
-    const { currentUser, id } = this.props;
+    const { currentUser, id, loggedIn } = this.props;
 
     if (isLoading)
       return (
@@ -49,8 +50,10 @@ class SingleArticle extends Component {
           <Timestamp relative date={created_at} />
         </article>
         <main>
-          <CommentForm currentUser={currentUser} id={id} renderNewComment={this.renderNewComment} />
-          <CommentsList comments={comments} />
+          {loggedIn
+            ? <CommentForm currentUser={currentUser} id={id} renderNewComment={this.renderNewComment} />
+            : <Alert variant="danger">Please log in to post comments!</Alert>}
+          <CommentsList comments={comments} currentUser={currentUser} />
         </main>
       </section>
     );
