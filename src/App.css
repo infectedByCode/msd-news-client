@@ -186,7 +186,6 @@ ul {
   width: 60%;
   margin: 1% auto;
 }
-
 /* FORMS */
 form {
   width: 80%;
@@ -221,4 +220,130 @@ form .btn-primary {
 .alert-danger {
   width: 60%;
   margin: 1% auto;
+}
+
+/* MOBILE RESPONSIVENESS */
+
+/* Mobile Phone */
+@media only screen and (max-width: 768px) {
+  /* Navigation */
+  header nav {
+    display: flex;
+    flex-direction: column;
+  }
+
+  header nav a {
+    width: 100%;
+    font-size: 1.25em;
+  }
+
+  header nav #logo {
+    text-align: center;
+  }
+
+  /* Homepage layout */
+  #homepage-layout {
+    display: flex;
+    flex-direction: column;
+  }
+
+  #homepage-layout .btn-primary {
+    width: 100%;
+    margin: 2.5% 0;
+  }
+
+  .list {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 0;
+    border-radius: 10px;
+  }
+
+  .list a {
+    width: 100%;
+    padding: 0;
+    margin: 0;
+  }
+
+  .list a  li {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 95%;
+    padding: 0;
+    margin: 1.25% auto;
+  }
+
+  .list a:first-child {
+    margin: 1.25% auto 0 auto;
+  }
+  .list a:last-child {
+    margin: 0 auto 2.5% auto;
+  }
+
+  #homepage-layout .list a  li h3 {
+    text-align: center;
+  }
+
+  #homepage-layout aside {
+    margin: 2.5% auto;
+  }
+
+  #homepage-layout aside h3 {
+    margin-top: 2.5%;
+  }
+
+  #homepage-layout aside ul {
+    width: 100%;
+    padding-bottom: 2.5%;
+    border-radius: 10px;
+  }
+
+  /* Single Article */
+
+  main article {
+    width: 80%;
+    margin: 0 auto;
+  }
+
+  main article .btn-danger {
+    width: 100%;
+    margin: 2.5% 0;
+  }
+
+  form .btn-primary {
+    width: 100%;
+  }
+
+  main #article-sub-menu select#topic-selector {
+    width: 100%;
+  }
+
+  /* Topics */
+  main #article-sub-menu select {
+    width: 80%;
+    margin: 2.5% 0;
+  }
+  /* Comments */
+  ul {
+    width: 80%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    border-radius: 10px;
+  }
+
+  ul li {
+    margin: 1.25% auto;
+  }
+
+  ul li:first-child {
+    margin: 2.5% auto 0 auto;
+  }
+}
+
+/* Mobile Phone */
+@media only screen and (max-width: 1024px) {
+  /* Navigation */
 }
