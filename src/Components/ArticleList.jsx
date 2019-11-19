@@ -4,20 +4,22 @@ import { Alert } from 'react-bootstrap';
 import ArticleCard from './ArticleCard';
 import ArticleSelect from './ArticleSelect';
 import ArticleForm from './ArticleForm';
+import ErrorPage from './ErrorPage';
 
 class ArticleList extends Component {
   state = {
     articleData: [],
     sort_by: 'created_at',
     order: 'desc',
-    isLoading: true
+    isLoading: true,
+    error: null
   };
 
   render() {
-    const { articleData, isLoading } = this.state;
+    const { articleData, isLoading, error } = this.state;
     const { currentUser, loggedIn } = this.props;
 
-    if (isLoading)
+    if (isLoading) {
       return (
         <img
           id="loadingGif"
@@ -25,6 +27,8 @@ class ArticleList extends Component {
           alt="loading page"
         />
       );
+    }
+    if (error) return <ErrorPage error={error} />;
 
     return (
       <main>
@@ -66,7 +70,13 @@ class ArticleList extends Component {
     const { topic } = this.props;
     const { sort_by, order } = this.state;
 
-    api.getArticles(topic, sort_by, order).then(articleData => this.setState({ articleData, isLoading: false }));
+    api
+      .getArticles(topic, sort_by, order)
+      .then(articleData => this.setState({ articleData, isLoading: false }))
+      .catch(error => {
+        const { status, statusText } = error.response;
+        this.setState({ error: { status, msg: statusText }, isLoading: false });
+      });
   };
 
   renderNewArticle = article => {

@@ -1,15 +1,17 @@
 import React, { Component } from 'react';
 import * as api from '../api';
 import TopicCard from './TopicCard';
+import ErrorPage from './ErrorPage';
 
 class TopicList extends Component {
   state = {
     topicData: [],
-    isLoading: true
+    isLoading: true,
+    error: null
   };
 
   render() {
-    const { topicData, isLoading } = this.state;
+    const { topicData, isLoading, error } = this.state;
 
     if (isLoading)
       return (
@@ -19,6 +21,8 @@ class TopicList extends Component {
           alt="loading page"
         />
       );
+
+    if (error) return <ErrorPage error={error} />;
     return (
       <aside>
         {this.props.topic
@@ -40,7 +44,10 @@ class TopicList extends Component {
   }
 
   fetchTopicData = () => {
-    api.getTopics().then(topicData => this.setState({ topicData, isLoading: false }));
+    api.getTopics().then(topicData => this.setState({ topicData, isLoading: false })).catch(error => {
+      const { status, statusText } = error.response;
+      this.setState({ error: { status, msg: statusText }, isLoading: false });
+    });
   };
 }
 

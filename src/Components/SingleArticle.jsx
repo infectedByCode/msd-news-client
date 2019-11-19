@@ -5,13 +5,15 @@ import * as api from '../api';
 import CommentsList from './CommentsList';
 import CommentForm from './CommentForm';
 import { navigate } from '@reach/router';
+import ErrorPage from './ErrorPage';
 
 class SingleArticle extends Component {
   state = {
     article: {},
     comments: [],
     isLoading: true,
-    commentDeleted: false
+    commentDeleted: false,
+    error: null
   };
 
   componentDidMount() {
@@ -27,10 +29,10 @@ class SingleArticle extends Component {
 
   render() {
     const { title, body, votes, topic, author, comment_count, created_at } = this.state.article;
-    const { comments, isLoading, commentDeleted } = this.state;
+    const { comments, isLoading, commentDeleted, error } = this.state;
     const { currentUser, id, loggedIn } = this.props;
 
-    if (isLoading)
+    if (isLoading) {
       return (
         <img
           id="loadingGif"
@@ -38,6 +40,8 @@ class SingleArticle extends Component {
           alt="loading page"
         />
       );
+    }
+    if (error) return <ErrorPage error={error} />;
 
     return (
       <main>
@@ -94,13 +98,19 @@ class SingleArticle extends Component {
   fetchArticle = () => {
     const { id } = this.props;
 
-    api.getArticleById(id).then(article => this.setState({ article, isLoading: false }));
+    api.getArticleById(id).then(article => this.setState({ article, isLoading: false })).catch(error => {
+      const { status, statusText } = error.response;
+      this.setState({ error: { status, msg: statusText }, isLoading: false });
+    });
   };
 
   fetchComments = () => {
     const { id } = this.props;
 
-    api.getCommentsByArticleId(id).then(comments => this.setState({ comments }));
+    api.getCommentsByArticleId(id).then(comments => this.setState({ comments })).catch(error => {
+      const { status, statusText } = error.response;
+      this.setState({ error: { status, msg: statusText }, isLoading: false });
+    });
   };
 
   renderNewComment = comment => {
