@@ -11,9 +11,9 @@ const TopicCard = props => {
           <span>newsBits/</span>
           {topic.slug}
         </h2>
-        <h3>
+        {/* <h3>
           {topic.description}
-        </h3>
+        </h3> */}
       </li>
     </Link>
   )

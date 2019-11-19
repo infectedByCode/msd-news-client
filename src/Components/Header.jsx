@@ -17,7 +17,7 @@ const Header = props => {
         <Link to='/'>Home</Link>
 
         <Link to='#'>
-          {currentUser ? `Logged in as ${currentUser}` : 'Sign Up'}
+          {currentUser ? `Hello, ${currentUser}` : 'Sign Up'}
         </Link>
         <Link to='#' onClick={handleClick}>
           {loggedIn ? 'Log off' : 'Log in'}

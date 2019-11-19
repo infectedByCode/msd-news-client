@@ -25,11 +25,10 @@ class TopicList extends Component {
     if (error) return <ErrorPage error={error} />;
     return (
       <aside>
-        {this.props.topic
-          ? <h1>
-              {this.props.topic}
-            </h1>
-          : <h3>Choose a newsbit</h3>}
+        {this.props.topic &&
+          <h1>
+            {this.props.topic}
+          </h1>}
         <ul>
           {topicData.map(topic => {
             return <TopicCard key={topic.slug} topic={topic} />;
