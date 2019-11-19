@@ -13,15 +13,16 @@ export const getArticleById = async id => {
   return data.article
 }
 
-export const postArticle = async (title, body, author, topic) => {
-  const { data } = await axios.post(`${baseUrl}/articles`, {
-    author: 'jessjelly',
-    title: 'random',
-    body: 'raaaaagghm',
-    topic: 'coding'
-  })
+export const postArticle = async (titleInput, bodyInput, topicInput, user) => {
+  const postRequestData = {
+    author: user,
+    title: titleInput,
+    body: bodyInput,
+    topic: topicInput
+  }
+  const { data } = await axios.post(`${baseUrl}/articles`, postRequestData)
 
-  return data.article
+  return data.article[0]
 }
 
 export const patchArticleById = async (id, vote) => {

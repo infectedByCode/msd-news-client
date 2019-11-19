@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import * as api from '../api';
-
 import ArticleCard from './ArticleCard';
 import ArticleSelect from './ArticleSelect';
 import ArticleForm from './ArticleForm';
@@ -35,7 +34,7 @@ class ArticleList extends Component {
               </h1>
             : <h3>Articles</h3>}
           <ArticleSelect updateSort={this.updateSort} />
-          {loggedIn && <ArticleForm currentUser={currentUser} />}
+          {loggedIn && <ArticleForm currentUser={currentUser} renderNewArticle={this.renderNewArticle} />}
         </div>
         <ul className="list">
           {articleData.map(article => {
@@ -65,6 +64,18 @@ class ArticleList extends Component {
     const { sort_by, order } = this.state;
 
     api.getArticles(topic, sort_by, order).then(articleData => this.setState({ articleData, isLoading: false }));
+  };
+
+  renderNewArticle = article => {
+    this.setState(currentState => {
+      return { articleData: [article, ...currentState.articleData] };
+    });
+  };
+
+  toggleForm = () => {
+    this.setState(currentState => {
+      return { showForm: !currentState.showForm };
+    });
   };
 
   updateSort = (sort_by, order) => {

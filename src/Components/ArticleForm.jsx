@@ -23,7 +23,7 @@ class ArticleForm extends Component {
         </label>
         <label>
           newsbit:
-          <select className="form-control" name="topicInput" onChange={this.handleChange} required>
+          <select id="topic-selector" name="topicInput" onChange={this.handleChange} required>
             <option value="" />
             <option value="coding">coding</option>
           </select>
@@ -46,7 +46,9 @@ class ArticleForm extends Component {
     const { titleInput, bodyInput, topicInput } = this.state;
     const { currentUser } = this.props;
 
-    api.postArticle(titleInput, bodyInput, topicInput, currentUser).then(console.log).catch(console.log);
+    api.postArticle(titleInput, bodyInput, topicInput, currentUser).then(article => {
+      this.props.renderNewArticle(article);
+    });
   };
 }
 
