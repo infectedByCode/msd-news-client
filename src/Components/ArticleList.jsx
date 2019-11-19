@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import * as api from '../api';
+import { Alert } from 'react-bootstrap';
 import ArticleCard from './ArticleCard';
 import ArticleSelect from './ArticleSelect';
 import ArticleForm from './ArticleForm';
@@ -34,7 +35,9 @@ class ArticleList extends Component {
               </h1>
             : <h3>Articles</h3>}
           <ArticleSelect updateSort={this.updateSort} />
-          {loggedIn && <ArticleForm currentUser={currentUser} renderNewArticle={this.renderNewArticle} />}
+          {loggedIn
+            ? <ArticleForm currentUser={currentUser} renderNewArticle={this.renderNewArticle} />
+            : <Alert variant="danger">Login to post new articles!</Alert>}
         </div>
         <ul className="list">
           {articleData.map(article => {
