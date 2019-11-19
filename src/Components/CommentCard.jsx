@@ -1,7 +1,6 @@
 import React from 'react'
 import { Button } from 'react-bootstrap'
 import Timestamp from 'react-timestamp'
-import { TiArrowUpOutline, TiArrowDownOutline } from 'react-icons/ti'
 import * as api from '../api'
 
 const CommentCard = props => {
@@ -21,7 +20,7 @@ const CommentCard = props => {
 
   const handleVote = e => {
     const vote = e.target.id === 'upvote-icon' ? 1 : -1
-    votes += vote
+    vote > 0 ? (votes += vote) : votes--
     // Update DB
     // api.patchArticleById(id, vote)
     alert(votes)
@@ -41,8 +40,12 @@ const CommentCard = props => {
         </span>
       </p>
       <div>
-        <TiArrowUpOutline id='upvote-icon' className='vote-icons' onClick={handleVote} />
-        <TiArrowDownOutline id='downvote-icon' className='vote-icons' onClick={handleVote} />
+        <button id='upvote' className='vote-btn' onClick={handleVote}>
+          +
+        </button>
+        <button id='downvote' className='vote-btn' onClick={handleVote}>
+          -
+        </button>
       </div>
       <Timestamp relative date={created_at} />
       {currentUser === author

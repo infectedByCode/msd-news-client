@@ -4,6 +4,10 @@
   font-family: 'Roboto', sans-serif;
 }
 
+object {
+  pointer-events: none;
+}
+
 :root {
   /* Backgrounds */
   --list-bg-color: slategrey;
@@ -148,10 +152,14 @@ section article {
   margin: 0 auto;
 }
 
-.vote-icons {
+.vote-btn {
   display: inline-block;
-  font-size: 3rem;
+  font-size: 1.5em;
   margin: 0.25% 0.75%;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  outline: none;
 }
 
 section article h4 {

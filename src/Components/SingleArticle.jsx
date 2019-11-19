@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import Timestamp from 'react-timestamp';
 import { Alert } from 'react-bootstrap';
-import { TiArrowUpOutline, TiArrowDownOutline } from 'react-icons/ti';
 import * as api from '../api';
 import CommentsList from './CommentsList';
 import CommentForm from './CommentForm';
@@ -51,10 +50,15 @@ class SingleArticle extends Component {
           </p>
           <Timestamp relative date={created_at} />
         </article>
-        <div>
-          <TiArrowUpOutline id="upvote-icon" className="vote-icons" onClick={this.handleVoteClick} />
-          <TiArrowDownOutline id="downvote-icon" className="vote-icons" onClick={this.handleVoteClick} />
-        </div>
+
+        <button id="upvote" className="vote-btn" onClick={this.handleVoteClick}>
+          +
+        </button>
+
+        <button id="downvote" className="vote-btn" onClick={this.handleVoteClick}>
+          -
+        </button>
+
         <main>
           {loggedIn
             ? <CommentForm currentUser={currentUser} id={id} renderNewComment={this.renderNewComment} />
@@ -106,14 +110,13 @@ class SingleArticle extends Component {
 
   handleVoteClick = e => {
     const { id } = this.props;
-    const vote = e.target.id === 'upvote-icon' ? 1 : -1;
-
+    const vote = e.target.id === 'upvote' ? 1 : e.target.id === 'downvote' ? -1 : 0;
     // Update DB
     api.patchArticleById(id, vote);
     // Set state using shallow copy for speed.
     this.setState(currentState => {
       const articleCopy = { ...currentState.article };
-      vote > 0 ? articleCopy.votes++ : articleCopy.votes--;
+      vote === 1 ? articleCopy.votes++ : articleCopy.votes--;
 
       return { article: articleCopy };
     });
