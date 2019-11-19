@@ -113,7 +113,7 @@ class SingleArticle extends Component {
     // Set state using shallow copy for speed.
     this.setState(currentState => {
       const articleCopy = { ...currentState.article };
-      articleCopy.votes += vote;
+      vote > 0 ? articleCopy.votes++ : articleCopy.votes--;
 
       return { article: articleCopy };
     });
