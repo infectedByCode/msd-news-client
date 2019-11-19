@@ -149,7 +149,9 @@ section article {
 }
 
 .vote-icons {
+  display: inline-block;
   font-size: 3rem;
+  margin: 0.25% 0.75%;
 }
 
 section article h4 {

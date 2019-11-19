@@ -51,9 +51,9 @@ class SingleArticle extends Component {
           </p>
           <Timestamp relative date={created_at} />
         </article>
-        <div className="vote-icons">
-          <TiArrowUpOutline id="upvote-icon" onClick={this.handleVoteClick} />
-          <TiArrowDownOutline id="downvote-icon" onClick={this.handleVoteClick} />
+        <div>
+          <TiArrowUpOutline id="upvote-icon" className="vote-icons" onClick={this.handleVoteClick} />
+          <TiArrowDownOutline id="downvote-icon" className="vote-icons" onClick={this.handleVoteClick} />
         </div>
         <main>
           {loggedIn
