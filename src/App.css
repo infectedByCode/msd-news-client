@@ -168,6 +168,11 @@ ul {
   list-style: none;
 }
 
+.alert-success {
+  width: 60%;
+  margin: 1% auto;
+}
+
 /* FORM */
 form {
   width: 60%;
@@ -189,4 +194,9 @@ form .btn-primary {
   line-height: 2.5rem;
   border-radius: 10px;
   margin: 1% 0;
+}
+
+.alert-danger {
+  width: 60%;
+  margin: 1% auto;
 }

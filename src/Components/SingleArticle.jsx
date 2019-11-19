@@ -9,12 +9,13 @@ class SingleArticle extends Component {
   state = {
     article: {},
     comments: [],
-    isLoading: true
+    isLoading: true,
+    commentDeleted: false
   };
 
   render() {
     const { title, body, votes, topic, author, comment_count, created_at } = this.state.article;
-    const { comments, isLoading } = this.state;
+    const { comments, isLoading, commentDeleted } = this.state;
     const { currentUser, id, loggedIn } = this.props;
 
     if (isLoading)
@@ -53,7 +54,13 @@ class SingleArticle extends Component {
           {loggedIn
             ? <CommentForm currentUser={currentUser} id={id} renderNewComment={this.renderNewComment} />
             : <Alert variant="danger">Please log in to post comments!</Alert>}
-          <CommentsList comments={comments} currentUser={currentUser} />
+          {commentDeleted && <Alert variant="success">Comment removed!</Alert>}
+          <CommentsList
+            comments={comments}
+            fetchComments={this.fetchComments}
+            currentUser={currentUser}
+            toggleCommentDeleted={this.toggleCommentDeleted}
+          />
         </main>
       </section>
     );
@@ -86,6 +93,10 @@ class SingleArticle extends Component {
     this.setState(currentState => {
       return { comments: [comment, ...currentState.comments] };
     });
+  };
+
+  toggleCommentDeleted = () => {
+    this.setState(currentState => ({ commentDeleted: !currentState.commentDeleted }));
   };
 }
 

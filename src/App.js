@@ -9,8 +9,8 @@ import SingleArticle from './Components/SingleArticle';
 
 class App extends Component {
   state = {
-    currentUser: '',
-    loggedIn: false
+    currentUser: 'tickle122',
+    loggedIn: true
   };
 
   render() {

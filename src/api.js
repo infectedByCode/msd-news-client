@@ -25,6 +25,12 @@ export const postCommentByArticleId = async (id, body, username) => {
   return data.comment
 }
 
+export const deleteCommentByArticleId = async id => {
+  const data = await axios.delete(`${baseUrl}/comments/${id}`)
+
+  return data.status
+}
+
 export const getTopics = async () => {
   const { data } = await axios.get(`${baseUrl}/topics`)
   return data.topics
