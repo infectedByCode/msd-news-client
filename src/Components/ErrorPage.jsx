@@ -2,9 +2,9 @@ import React from 'react'
 
 const ErrorPage = props => {
   const { error: { status, msg } } = props
-
+// console.log(currentUser)
   return (
-    <main class='error-page'>
+    <main className='error-page'>
       {status === 404 ? <><h2>404</h2><br/><h3>Oh Great! {msg}</h3><br/><p>You may have broken the internet. That means you should get back to working on that project.</p><br/><a href="/">Oh wait! Reset here.</a></>:<>
       <h2>
         Error: {status}

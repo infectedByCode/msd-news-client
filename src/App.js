@@ -10,8 +10,8 @@ import ErrorPage from './Components/ErrorPage';
 
 class App extends Component {
   state = {
-    currentUser: 'jessjelly',
-    loggedIn: true
+    currentUser: '',
+    loggedIn: false
   };
 
   render() {

@@ -7,6 +7,7 @@ const Header = props => {
   const handleClick = e => {
     handleSignIn('jessjelly')
   }
+
   return (
     <header>
       <nav>
