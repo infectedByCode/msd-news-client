@@ -179,6 +179,11 @@ section article {
 section article h4 {
   text-align: justify;
 }
+
+main article p span {
+  padding: 0 5%;
+}
+
 /* COMMENTS */
 ul {
   display: grid;
@@ -198,6 +203,14 @@ ul {
 
 .alert-success {
   width: 60%;
+  margin: 1% auto;
+}
+
+.btn-danger {
+  display: block;
+  width: 80%;
+  border-radius: 10px;
+  line-height: 2em;
   margin: 1% auto;
 }
 /* FORMS */
@@ -253,6 +266,19 @@ form .btn-primary {
 
 /* MOBILE RESPONSIVENESS */
 
+/* Tablet */
+@media only screen and (max-width: 1250px) {
+  /* aside topic bar */
+  aside ul {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+  }
+
+  aside ul a {
+    width: 100%;
+  }
+}
+
 /* Mobile Phone */
 @media only screen and (max-width: 768px) {
   /* Navigation */
@@ -286,7 +312,6 @@ form .btn-primary {
     flex-direction: column;
     justify-content: center;
     padding: 0;
-    border-radius: 10px;
   }
 
   .list a {
@@ -326,7 +351,6 @@ form .btn-primary {
   #homepage-layout aside ul {
     width: 100%;
     padding-bottom: 2.5%;
-    border-radius: 10px;
   }
 
   aside ul {
@@ -379,9 +403,4 @@ form .btn-primary {
   ul li:first-child {
     margin: 2.5% auto 0 auto;
   }
-}
-
-/* Mobile Phone */
-@media only screen and (max-width: 1024px) {
-  /* Navigation */
 }

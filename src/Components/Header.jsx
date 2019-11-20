@@ -19,11 +19,11 @@ const Header = props => {
         <Link to='#'>
           {currentUser ? `Hello, ${currentUser}` : 'Sign Up'}
         </Link>
-        <Link to='#' onClick={handleClick}>
+        <Link to='/' onClick={handleClick}>
           {loggedIn ? 'Log off' : 'Log in'}
         </Link>
       </nav>
-      <h1>Welcome to NewsBits</h1>
+      <h1>NewsBits</h1>
     </header>
   )
 }

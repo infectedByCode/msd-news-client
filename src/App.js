@@ -21,7 +21,7 @@ class App extends Component {
         <Header currentUser={currentUser} loggedIn={loggedIn} handleSignIn={this.handleSignIn} />
         <Router>
           <Homepage currentUser={currentUser} loggedIn={loggedIn} path="/" />
-          <SingleTopic path="/topic/:topic" />
+          <SingleTopic path="/topic/:topic" currentUser={currentUser} loggedIn={loggedIn} />
           <SingleArticle currentUser={currentUser} loggedIn={loggedIn} path="/articles/:id" />
           <ErrorPage error={{ status: 404, msg: 'Page not found.' }} default />
         </Router>

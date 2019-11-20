@@ -57,12 +57,16 @@ class SingleArticle extends Component {
               {author}
             </span>
           </h3>
-          <h4>
-            {body}
-          </h4>
           <p>
-            votes: {votes}
-            comments:{comment_count}
+            {body}
+          </p>
+          <p>
+            <span>
+              votes: {votes}
+            </span>
+            <span>
+              comments:{comment_count}
+            </span>
           </p>
           <Timestamp relative date={created_at} />
           <div>
