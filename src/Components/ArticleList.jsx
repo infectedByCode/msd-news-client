@@ -34,14 +34,14 @@ class ArticleList extends Component {
       <main>
         <div id="article-sub-menu">
           {this.props.topic
-            ? <h1>
+            ? <h2>
                 newsbits/{this.props.topic}
-              </h1>
-            : <h3>Articles</h3>}
-          <ArticleSelect updateSort={this.updateSort} />
+              </h2>
+            : <h2>Articles</h2>}
           {loggedIn
-            ? <ArticleForm currentUser={currentUser} renderNewArticle={this.renderNewArticle} />
+            ? <><h3>Post a new article</h3><ArticleForm currentUser={currentUser} renderNewArticle={this.renderNewArticle} /></>
             : <Alert variant="danger">Login to post new articles!</Alert>}
+          <ArticleSelect updateSort={this.updateSort} />
         </div>
         <ul className="list">
           {articleData.map(article => {
