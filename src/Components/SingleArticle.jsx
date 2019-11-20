@@ -17,17 +17,6 @@ class SingleArticle extends Component {
     error: null
   };
 
-  componentDidMount() {
-    this.fetchArticle();
-    this.fetchComments();
-  }
-
-  componentDidUpdate(prevProps, prevState) {
-    if (prevProps.id !== this.props.id || prevState.comments !== this.state.comments) {
-      this.fetchArticle();
-    }
-  }
-
   render() {
     const { title, body, votes, topic, author, comment_count, created_at } = this.state.article;
     const { comments, isLoading, commentDeleted, error } = this.state;
@@ -91,6 +80,17 @@ class SingleArticle extends Component {
         </section>
       </main>
     );
+  }
+
+  componentDidMount() {
+    this.fetchArticle();
+    this.fetchComments();
+  }
+
+  componentDidUpdate(prevProps, prevState) {
+    if (prevProps.id !== this.props.id || prevState.comments !== this.state.comments) {
+      this.fetchArticle();
+    }
   }
 
   fetchArticle = () => {

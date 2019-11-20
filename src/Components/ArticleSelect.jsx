@@ -8,7 +8,7 @@ class ArticleSelect extends Component {
 
   render() {
     return (
-      <select onChange={this.handleSelectChange}>
+      <select id="article-sort" onChange={this.handleSelectChange}>
         <option value="created_at,desc">Newest to oldest</option>
         <option value="created_at,asc">Oldest to newest</option>
         <option value="comment_count,desc">Most commented</option>

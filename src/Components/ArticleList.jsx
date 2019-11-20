@@ -40,7 +40,7 @@ class ArticleList extends Component {
             : <h2>Articles</h2>}
           {loggedIn
             ? <><h3>Post a new article</h3><ArticleForm currentUser={currentUser} renderNewArticle={this.renderNewArticle} /></>
-            : <Alert variant="danger">Login to post new articles!</Alert>}
+            : <Alert variant="danger">Login to post new articles and vote!</Alert>}
           <ArticleSelect updateSort={this.updateSort} />
         </div>
         <ul className="list">

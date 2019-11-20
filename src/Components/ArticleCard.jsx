@@ -15,13 +15,13 @@ const ArticleCard = props => {
             {article.topic}
           </h2>
           <h3>
-            Posted by newsBiter/{article.author} <Timestamp relative date={article.created_at} relativeTo={Date} />
+            Posted by {article.author} on <Timestamp date={article.created_at} />
           </h3>
           <h4>
             {article.title}
           </h4>
           <p>
-            comments: {article.comment_count}
+            Comments: {article.comment_count}
           </p>
         </li>
       </Link>

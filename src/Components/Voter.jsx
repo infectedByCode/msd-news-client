@@ -49,7 +49,7 @@ class Voter extends Component {
   };
 
   styleVoteBtns = (e, voteValue) => {
-    const button = document.getElementById(e.target.id);
+    const button = e.target;
 
     if (this.state.voteChange + voteValue >= 1 && button.id === 'upvote') {
       button.classList.add('not-vote');
