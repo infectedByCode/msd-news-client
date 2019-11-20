@@ -2,7 +2,7 @@ import React from 'react'
 import CommentCard from './CommentCard'
 
 const CommentsList = props => {
-  const { comments, currentUser, fetchComments, toggleCommentDeleted } = props
+  const { comments, currentUser, fetchComments, toggleCommentDeleted, loggedIn, updateCommentVote } = props
 
   return (
     <ul>
@@ -11,9 +11,11 @@ const CommentsList = props => {
           <CommentCard
             comment={comment}
             currentUser={currentUser}
+            loggedIn={loggedIn}
             fetchComments={fetchComments}
             toggleCommentDeleted={toggleCommentDeleted}
             key={comment.comment_id}
+            updateCommentVote={updateCommentVote}
           />
         )
       })}

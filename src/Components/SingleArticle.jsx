@@ -6,6 +6,7 @@ import CommentsList from './CommentsList';
 import CommentForm from './CommentForm';
 import { navigate } from '@reach/router';
 import ErrorPage from './ErrorPage';
+import Voter from './Voter';
 
 class SingleArticle extends Component {
   state = {
@@ -69,18 +70,10 @@ class SingleArticle extends Component {
             </span>
           </p>
           <Timestamp relative date={created_at} />
-          <div>
-            <button id="upvote" className="vote-btn" onClick={this.handleVoteClick}>
-              &#8679;
-            </button>
-
-            <button id="downvote" className="vote-btn" onClick={this.handleVoteClick}>
-              &#8681;
-            </button>
-          </div>
+          {loggedIn && <Voter updateArticleVote={this.updateArticleVote} article_id={id} />}
           {currentUser === author &&
-            <button className="btn-danger" onClick={this.handleDeleteComment}>
-              Delete
+            <button className="btn-danger" onClick={this.handleDeleteArticle}>
+              Delete this
             </button>}
         </article>
         <section>
@@ -90,8 +83,10 @@ class SingleArticle extends Component {
           {commentDeleted && <Alert variant="success">Comment removed!</Alert>}
           <CommentsList
             comments={comments}
+            loggedIn={loggedIn}
             fetchComments={this.fetchComments}
             currentUser={currentUser}
+            updateCommentVote={this.updateCommentVote}
             toggleCommentDeleted={this.toggleCommentDeleted}
           />
         </section>
@@ -127,12 +122,8 @@ class SingleArticle extends Component {
     this.setState(currentState => ({ commentDeleted: !currentState.commentDeleted }));
   };
 
-  handleVoteClick = e => {
-    const { id } = this.props;
-    const vote = e.target.id === 'upvote' ? 1 : e.target.id === 'downvote' ? -1 : 0;
-    // Update DB
-    api.patchArticleById(id, vote);
-    // Set state using shallow copy for speed.
+  updateArticleVote = vote => {
+    //Set state using shallow copy for speed.
     this.setState(currentState => {
       const articleCopy = { ...currentState.article };
       vote === 1 ? articleCopy.votes++ : articleCopy.votes--;
@@ -141,11 +132,24 @@ class SingleArticle extends Component {
     });
   };
 
-  handleDeleteComment = () => {
-    const { id } = this.props;
-    api.deleteArticleById(id).then(status => {
-      if (status === 204) navigate('/');
+  updateCommentVote = (vote, comment_id) => {
+    //Set state using shallow copy for speed.
+    this.setState(currentState => {
+      const commentsCopy = [...currentState.comments];
+      commentsCopy.forEach(comment => (comment.comment_id === comment_id ? (comment.votes += vote) : null));
+
+      return { article: commentsCopy };
     });
+  };
+
+  handleDeleteArticle = () => {
+    const { id } = this.props;
+    api
+      .deleteArticleById(id)
+      .then(status => {
+        if (status === 204) navigate('/');
+      })
+      .catch(error => console.log(error.response));
   };
 }
 
