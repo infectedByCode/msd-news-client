@@ -5,11 +5,12 @@ class ArticleForm extends Component {
   state = {
     titleInput: '',
     bodyInput: '',
-    topicInput: ''
+    topicInput: '',
+    topicData: []
   };
 
   render() {
-    const { titleInput, bodyInput } = this.state;
+    const { titleInput, bodyInput, topicData } = this.state;
 
     return (
       <form id="article-form" onSubmit={this.handleSubmit}>
@@ -25,13 +26,30 @@ class ArticleForm extends Component {
           newsbit:
           <select id="topic-selector" name="topicInput" onChange={this.handleChange} required>
             <option value="" />
-            <option value="coding">coding</option>
+            {topicData.map(topic => {
+              return (
+                <option key={topic.slug} value={topic.slug}>
+                  {topic.slug}
+                </option>
+              );
+            })}
           </select>
         </label>
         <button className="btn-primary">Post New Article</button>
       </form>
     );
   }
+
+  componentDidMount() {
+    this.fetchTopicData();
+  }
+
+  fetchTopicData = () => {
+    api.getTopics().then(topicData => this.setState({ topicData, isLoading: false })).catch(error => {
+      const { status, statusText } = error.response;
+      this.setState({ error: { status, msg: statusText }, isLoading: false });
+    });
+  };
 
   handleChange = e => {
     const input = e.target.name;
@@ -49,6 +67,8 @@ class ArticleForm extends Component {
     api.postArticle(titleInput, bodyInput, topicInput, currentUser).then(article => {
       this.props.renderNewArticle(article);
     });
+    e.target[2].selectedIndex = 0;
+    this.setState({ titleInput: '', bodyInput: '' });
   };
 }
 
