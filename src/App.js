@@ -14,6 +14,17 @@ class App extends Component {
     loggedIn: false
   };
 
+  componentDidMount() {
+    const { currentUser, loggedIn } = this.state;
+    const user = JSON.parse(localStorage.getItem('user'));
+
+    if (user.loggedIn) {
+      this.setState({ currentUser: user.currentUser, loggedIn: true });
+    } else {
+      localStorage.setItem('user', JSON.stringify({ currentUser: currentUser, loggedIn: loggedIn }));
+    }
+  }
+
   render() {
     const { currentUser, loggedIn } = this.state;
     return (
@@ -23,7 +34,7 @@ class App extends Component {
           <Homepage currentUser={currentUser} loggedIn={loggedIn} path="/" />
           <SingleTopic path="/topic/:topic" currentUser={currentUser} loggedIn={loggedIn} />
           <SingleArticle currentUser={currentUser} loggedIn={loggedIn} path="/articles/:id" />
-          <ErrorPage error={{ status: 404, msg: 'Page not found.' }} default />
+          <ErrorPage error={{ status: 404, msg: 'Page not found.' }} path="/*" />
         </Router>
       </div>
     );
@@ -31,8 +42,13 @@ class App extends Component {
 
   handleSignIn = user => {
     this.setState(currentState => {
-      if (currentState.currentUser) return { currentUser: '', loggedIn: false };
-      else return { currentUser: user, loggedIn: true };
+      if (currentState.currentUser) {
+        localStorage.setItem('user', JSON.stringify({ currentUser: '', loggedIn: false }));
+        return { currentUser: '', loggedIn: false };
+      } else {
+        localStorage.setItem('user', JSON.stringify({ currentUser: user, loggedIn: true }));
+        return { currentUser: user, loggedIn: true };
+      }
     });
   };
 }
