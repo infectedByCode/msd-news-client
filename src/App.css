@@ -63,19 +63,32 @@ header nav a {
   color: var(--main-text-color);
   text-align: center;
   text-decoration: none;
-  padding: 5% 3% 3% 3%;
+  padding: 8% 3% 0% 0%;
   line-height: 2.25rem;
 }
 
 header nav a:hover {
   text-decoration: none;
   cursor: pointer;
+  color: white;
 }
 
 header nav h1 {
   text-align: center;
   grid-column: 1/6;
 }
+
+#login {
+  background: none;
+  color: white;
+  border: none;
+  font: inherit;
+  cursor: pointer;
+  outline: inherit;
+  line-height: 2.25rem;
+}
+
+/* Side content */
 
 aside {
   width: 100%;
@@ -302,8 +315,14 @@ form .btn-primary {
   header nav a {
     width: 100%;
     font-size: 1.25em;
+    padding: 2.5%;
   }
 
+  #login {
+    width: 100%;
+    font-size: 1.25em;
+    margin: 0 auto;
+  }
   header nav #logo {
     text-align: center;
   }
