@@ -23,7 +23,6 @@ const Header = props => {
           {currentUser ? `Hello, ${currentUser}` : ''}
         </Link>
       </nav>
-      <h1>NewsBits</h1>
     </header>
   )
 }

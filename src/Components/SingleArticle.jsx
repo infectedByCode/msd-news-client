@@ -37,28 +37,22 @@ class SingleArticle extends Component {
       <main>
         {/* Change it to be a component */}
         <h2>
-          newsbits/{topic}
+          newsBits/{topic}
         </h2>
         <article>
           <h3>
             {title}
-            <br />
-            <span>
-              {author}
-            </span>
           </h3>
+          <h4>
+            {author}
+          </h4>
           <p>
             {body}
           </p>
-          <p>
-            <span>
-              votes: {votes}
-            </span>
-            <span>
-              comments:{comment_count}
-            </span>
+          <p id="article-comment">
+            Comments:{comment_count}
           </p>
-          <Timestamp relative date={created_at} />
+          <Timestamp class="article-timestamp" relative date={created_at} />
           {loggedIn && <Voter votes={votes} article_id={id} />}
           {currentUser === author &&
             <button className="btn-danger" onClick={this.handleDeleteArticle}>
