@@ -25,11 +25,6 @@ const CommentCard = props => {
       <p>
         {body}
       </p>
-      <p>
-        <span>
-          votes: {votes}
-        </span>
-      </p>
       <Timestamp relative date={created_at} />
       {currentUser === author &&
         <button className='btn-danger' onClick={handleClick}>
