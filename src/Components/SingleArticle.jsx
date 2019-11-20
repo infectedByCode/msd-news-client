@@ -70,7 +70,7 @@ class SingleArticle extends Component {
             </span>
           </p>
           <Timestamp relative date={created_at} />
-          {loggedIn && <Voter updateArticleVote={this.updateArticleVote} article_id={id} />}
+          {loggedIn && <Voter votes={votes} article_id={id} />}
           {currentUser === author &&
             <button className="btn-danger" onClick={this.handleDeleteArticle}>
               Delete this
@@ -86,7 +86,6 @@ class SingleArticle extends Component {
             loggedIn={loggedIn}
             filterComments={this.filterComments}
             currentUser={currentUser}
-            updateCommentVote={this.updateCommentVote}
             toggleCommentDeleted={this.toggleCommentDeleted}
           />
         </section>
@@ -117,7 +116,7 @@ class SingleArticle extends Component {
       const commentsCopy = [...currentState.comments];
       const filteredComments = commentsCopy.filter(comment => comment.comment_id !== comment_id);
 
-      this.setState({ comments: filteredComments });
+      return { comments: filteredComments };
     });
   };
 
@@ -129,26 +128,6 @@ class SingleArticle extends Component {
 
   toggleCommentDeleted = () => {
     this.setState(currentState => ({ commentDeleted: !currentState.commentDeleted }));
-  };
-
-  updateArticleVote = vote => {
-    //Set state using shallow copy for speed.
-    this.setState(currentState => {
-      const articleCopy = { ...currentState.article };
-      vote === 1 ? articleCopy.votes++ : articleCopy.votes--;
-
-      return { article: articleCopy };
-    });
-  };
-
-  updateCommentVote = (vote, comment_id) => {
-    //Set state using shallow copy for speed.
-    this.setState(currentState => {
-      const commentsCopy = [...currentState.comments];
-      commentsCopy.forEach(comment => (comment.comment_id === comment_id ? (comment.votes += vote) : null));
-
-      return { article: commentsCopy };
-    });
   };
 
   handleDeleteArticle = () => {

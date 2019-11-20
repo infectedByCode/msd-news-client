@@ -1,37 +1,77 @@
 import React, { Component } from 'react';
-import * as api from '../api'
+import * as api from '../api';
 
 class Voter extends Component {
-  render() {
+  state = {
+    voteChange: 0
+  };
 
+  render() {
+    const { votes } = this.props;
+    const { voteChange } = this.state;
     return (
-      <>
-        <div>
-          <button id='upvote' className='vote-btn' onClick={this.handleVote}>
-             &#8679;
+      <div className="vote-block">
+        <button id="upvote" className="vote-btn" onClick={e => this.handleVote(e, 1)}>
+          &#8679;
         </button>
-          <button id='downvote' className='vote-btn' onClick={this.handleVote}>
-             &#8681;
+        <p>
+          &#9733; {votes + voteChange}
+        </p>
+        <button id="downvote" className="vote-btn" onClick={e => this.handleVote(e, -1)}>
+          &#8681;
         </button>
-        </div>
-        </>
+      </div>
     );
   }
 
-  handleVote = (e) => {
-    const { comment_id, article_id, updateArticleVote, updateCommentVote} = this.props
-    const vote = e.target.id === 'upvote' ? 1 : -1
+  handleVote = (e, voteValue) => {
+    this.styleVoteBtns(e, voteValue);
+
+    const { comment_id, article_id } = this.props;
+    // Update visable state
+    this.setState(currentState => {
+      return { voteChange: currentState.voteChange + voteValue };
+    });
     // Update DB for comments
-    if (comment_id) {
-      api.patchCommentById(comment_id, vote)
-      updateCommentVote(vote, comment_id)
-    }
+    if (comment_id)
+      api.patchCommentById(comment_id, voteValue).catch(() => {
+        this.setState(currentState => {
+          return { voteChange: currentState.voteChange - voteValue };
+        });
+      });
     // Update DB for articles
-    if (article_id) {
-      api.patchArticleById(article_id, vote);
-      updateArticleVote(vote)
+    if (article_id)
+      api.patchArticleById(article_id, voteValue).catch(() => {
+        this.setState(currentState => {
+          return { voteChange: currentState.voteChange - voteValue };
+        });
+      });
+  };
+
+  styleVoteBtns = (e, voteValue) => {
+    const button = document.getElementById(e.target.id);
+
+    if (this.state.voteChange + voteValue >= 1 && button.id === 'upvote') {
+      button.classList.add('not-vote');
+      button.disabled = true;
     }
-  }
+
+    if (this.state.voteChange + voteValue <= -1 && button.id === 'downvote') {
+      button.classList.add('not-vote');
+      button.disabled = true;
+    }
+
+    if (this.state.voteChange + voteValue === 0) {
+      const upBtn = document.getElementById('upvote');
+      const downBtn = document.getElementById('downvote');
+
+      upBtn.disabled = false;
+      downBtn.disabled = false;
+
+      upBtn.classList.remove('not-vote');
+      downBtn.classList.remove('not-vote');
+    }
+  };
 }
 
 export default Voter;

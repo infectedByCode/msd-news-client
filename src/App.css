@@ -17,6 +17,7 @@ rgba(252, 176, 69, 1) orange */
   --list-bg-color: slategrey;
   --card-bg-color: beige;
   --nav-bg-color: slategrey;
+  --btn-color-alt: teal;
 
   /* Text colors */
   --main-text-color: white;
@@ -191,7 +192,29 @@ section article {
   width: 50px;
   height: 50px;
   border-radius: 50%;
+  background-color: teal;
   outline: none;
+}
+
+.vote-btn:focus {
+  outline: none;
+}
+
+.vote-btn:active {
+  background: teal;
+  color: inherit;
+  border: none;
+  cursor: pointer;
+  outline: inherit;
+}
+
+.not-vote {
+  background: none;
+  color: inherit;
+  border: none;
+  cursor: pointer;
+  outline: inherit;
+  background: grey;
 }
 
 section article h4 {
