@@ -84,7 +84,7 @@ class SingleArticle extends Component {
           <CommentsList
             comments={comments}
             loggedIn={loggedIn}
-            fetchComments={this.fetchComments}
+            filterComments={this.filterComments}
             currentUser={currentUser}
             updateCommentVote={this.updateCommentVote}
             toggleCommentDeleted={this.toggleCommentDeleted}
@@ -109,6 +109,15 @@ class SingleArticle extends Component {
     api.getCommentsByArticleId(id).then(comments => this.setState({ comments })).catch(error => {
       const { status, statusText } = error.response;
       this.setState({ error: { status, msg: statusText }, isLoading: false });
+    });
+  };
+
+  filterComments = comment_id => {
+    this.setState(currentState => {
+      const commentsCopy = [...currentState.comments];
+      const filteredComments = commentsCopy.filter(comment => comment.comment_id !== comment_id);
+
+      this.setState({ comments: filteredComments });
     });
   };
 
