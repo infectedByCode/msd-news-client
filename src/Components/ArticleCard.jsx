@@ -4,7 +4,7 @@ import Timestamp from 'react-timestamp'
 import Voter from './Voter'
 
 const ArticleCard = props => {
-  const { article } = props
+  const { article, currentUser } = props
 
   return (
     <div className='card'>
@@ -25,7 +25,7 @@ const ArticleCard = props => {
           </p>
         </li>
       </Link>
-      <Voter votes={article.votes} />
+      <Voter votes={article.votes} currentUser={currentUser} author={article.author} />
     </div>
   )
 }

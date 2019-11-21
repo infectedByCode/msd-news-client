@@ -454,6 +454,31 @@ form .btn-primary {
   margin: 1% auto;
 }
 
+/* USER PAGE */
+
+#user-articles main .list {
+  padding: 0;
+  margin: 0 auto;
+  grid-template-columns: 100%;
+}
+
+#user-articles main .list .card {
+  width: 95%;
+  margin: 1.25% auto;
+}
+
+#user-articles main .list .card:first-of-type {
+  margin-top: 2.5%;
+}
+
+#user-articles main .list .card:last-of-type {
+  margin-bottom: 2.5%;
+}
+
+#user-articles main .list .card a {
+  width: 100%;
+}
+
 /* ERRORS */
 .error-page {
   height: 100%;
@@ -532,6 +557,14 @@ form .btn-primary {
   /* Comments */
   section ul {
     width: 80%;
+  }
+
+  /* USERS  */
+
+  #user-articles .vote-block {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
   }
 }
 
@@ -727,5 +760,11 @@ form .btn-primary {
     grid-column: 1/7;
     grid-row: 5/6;
     width: 80%;
+  }
+
+  /* USER  */
+
+  #user-articles #article-sub-menu #article-sort {
+    width: 100%;
   }
 }

@@ -25,7 +25,7 @@ class User extends Component {
     if (error) return <ErrorPage error={error} />;
 
     return (
-      <main>
+      <main id="user-layout">
         <section id="user-profile">
           <img src={avatar_url} alt={`${name} profile`} />
           <h1>

@@ -20,7 +20,7 @@ class App extends Component {
     const { currentUser, loggedIn } = this.state;
     const user = JSON.parse(localStorage.getItem('user'));
 
-    if (user.loggedIn) {
+    if (user && user.loggedIn) {
       this.setState({ currentUser: user.currentUser, loggedIn: true });
     } else {
       localStorage.setItem('user', JSON.stringify({ currentUser: currentUser, loggedIn: loggedIn }));
