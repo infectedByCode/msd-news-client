@@ -8,6 +8,7 @@ import SingleTopic from './Components/SingleTopic';
 import SingleArticle from './Components/SingleArticle';
 import ErrorPage from './Components/ErrorPage';
 import Footer from './Components/Footer';
+import User from './Components/User';
 
 class App extends Component {
   state = {
@@ -35,6 +36,7 @@ class App extends Component {
           <Homepage currentUser={currentUser} loggedIn={loggedIn} path="/" />
           <SingleTopic path="/topic/:topic" currentUser={currentUser} loggedIn={loggedIn} />
           <SingleArticle currentUser={currentUser} loggedIn={loggedIn} path="/articles/:id" />
+          <User currentUser={currentUser} loggedIn={loggedIn} path="/users/:username" />
           <ErrorPage error={{ status: 404, msg: 'Page not found.' }} path="/*" />
         </Router>
         <Footer />

@@ -2,7 +2,7 @@ import axios from 'axios'
 
 const baseUrl = 'https://msd-news.herokuapp.com/api'
 
-export const getArticles = async (topic, sort_by, order) => {
+export const getArticles = async (topic, sort_by, order, username) => {
   const { data } = await axios.get(`${baseUrl}/articles`, { params: { topic, sort_by, order } })
 
   return data.articles
@@ -65,4 +65,9 @@ export const patchCommentById = async (id, vote) => {
 export const getTopics = async (limit = 3) => {
   const { data } = await axios.get(`${baseUrl}/topics`, { params: { limit } })
   return data.topics
+}
+
+export const getUser = async username => {
+  const { data } = await axios.get(`${baseUrl}/users/${username}`)
+  return data.user
 }

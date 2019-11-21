@@ -19,7 +19,7 @@ const Header = props => {
         <button id='login' to='/' onClick={handleClick}>
           {loggedIn ? 'Log off' : 'Log in'}
         </button>
-        <Link to='#'>
+        <Link to={`/users/${currentUser}`}>
           {currentUser ? `Hello, ${currentUser}` : ''}
         </Link>
       </nav>
