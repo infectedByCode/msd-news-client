@@ -27,7 +27,11 @@ class User extends Component {
     return (
       <main id="user-layout">
         <section id="user-profile">
-          <img src={avatar_url} alt={`${name} profile`} />
+          <img
+            src={avatar_url}
+            alt={`${name} profile`}
+            onError={e => (e.target.src = 'https://upload.wikimedia.org/wikipedia/commons/f/fe/Avatar_Miau.png')}
+          />
           <h1>
             {username}
           </h1>
