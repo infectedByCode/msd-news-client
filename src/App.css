@@ -464,6 +464,11 @@ form .btn-primary {
 
 /* USER PAGE */
 
+#user-profile img {
+  height: 400px;
+  margin: 2%;
+}
+
 #user-articles main .list {
   padding: 0;
   margin: 0 auto;
