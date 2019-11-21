@@ -1,18 +1,18 @@
 import React, { Component } from 'react';
 import ErrorPage from './ErrorPage';
-import ArticleCard from './ArticleCard';
+import ArticleList from './ArticleList';
 import * as api from '../api';
 
 class User extends Component {
   state = {
     userData: {},
-    userArticles: [],
     isLoading: true,
     error: null
   };
 
   render() {
-    const { userData: { username, name, avatar_url }, userArticles, isLoading, error } = this.state;
+    const { userData: { username, name, avatar_url }, isLoading, error } = this.state;
+    const { currentUser, loggedIn } = this.props;
     if (isLoading)
       return (
         <img
@@ -36,9 +36,7 @@ class User extends Component {
           </h2>
         </section>
         <aside id="user-articles">
-          {userArticles.map(article => {
-            return <ArticleCard key={article.id} article={article} />;
-          })}
+          <ArticleList author={username} loggedIn={loggedIn} currentUser={currentUser} />
         </aside>
       </main>
     );
@@ -46,7 +44,6 @@ class User extends Component {
 
   componentDidMount() {
     this.fetchUserData();
-    this.fetchArticlesByUser();
   }
 
   fetchUserData = () => {
@@ -56,20 +53,6 @@ class User extends Component {
       const { status, msg } = error.response;
       this.setState({ error: { status, msg }, isLoading: false });
     });
-  };
-
-  fetchArticlesByUser = () => {
-    const { username } = this.props;
-
-    api
-      .getArticles(undefined, undefined, undefined, username)
-      .then(articles => {
-        this.setState({ userArticles: articles });
-      })
-      .catch(error => {
-        const { status, msg } = error.response;
-        this.setState({ error: { status, msg }, isLoading: false });
-      });
   };
 }
 

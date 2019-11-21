@@ -67,11 +67,11 @@ class ArticleList extends Component {
   }
 
   fetchArticleData = () => {
-    const { topic } = this.props;
+    const { topic, author } = this.props;
     const { sort_by, order } = this.state;
 
     api
-      .getArticles(topic, sort_by, order)
+      .getArticles(topic, sort_by, order, author)
       .then(articleData => this.setState({ articleData, isLoading: false }))
       .catch(error => {
         const { status, statusText } = error.response;
