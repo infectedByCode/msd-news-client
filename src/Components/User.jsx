@@ -62,11 +62,9 @@ class User extends Component {
     const { username } = this.props;
 
     api
-      .getArticles()
+      .getArticles(undefined, undefined, undefined, username)
       .then(articles => {
-        const filteredArticles = articles.filter(article => article.author === username);
-
-        this.setState({ userArticles: filteredArticles });
+        this.setState({ userArticles: articles });
       })
       .catch(error => {
         const { status, msg } = error.response;

@@ -2,8 +2,8 @@ import axios from 'axios'
 
 const baseUrl = 'https://msd-news.herokuapp.com/api'
 
-export const getArticles = async (topic, sort_by, order, username) => {
-  const { data } = await axios.get(`${baseUrl}/articles`, { params: { topic, sort_by, order } })
+export const getArticles = async (topic, sort_by, order, author) => {
+  const { data } = await axios.get(`${baseUrl}/articles`, { params: { topic, sort_by, order, author } })
 
   return data.articles
 }
