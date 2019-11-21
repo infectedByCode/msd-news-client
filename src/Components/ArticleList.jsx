@@ -17,7 +17,7 @@ class ArticleList extends Component {
 
   render() {
     const { articleData, isLoading, error } = this.state;
-    const { currentUser, loggedIn } = this.props;
+    const { currentUser, loggedIn, author} = this.props;
 
     if (isLoading) {
       return (
@@ -38,9 +38,8 @@ class ArticleList extends Component {
                 newsbits/{this.props.topic}
               </h2>
             : <h2>Articles</h2>}
-          {loggedIn
-            ? <><h3>Post a new article</h3><ArticleForm currentUser={currentUser} renderNewArticle={this.renderNewArticle} /></>
-            : <Alert variant="danger">Login to post new articles and vote!</Alert>}
+          {loggedIn && !author && <><h3>Post a new article</h3><ArticleForm currentUser={currentUser} renderNewArticle={this.renderNewArticle} /></>}
+          {!loggedIn && <Alert variant="danger">Login to post new articles and vote!</Alert>}
           <ArticleSelect updateSort={this.updateSort} />
         </div>
         <ul className="list">
