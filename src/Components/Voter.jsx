@@ -7,8 +7,8 @@ class Voter extends Component {
   };
 
   render() {
-    const { votes, currentUser, author } = this.props;
-    console.log(currentUser === author);
+    const { votes } = this.props;
+
     const { voteChange } = this.state;
     return (
       <div className="vote-block">

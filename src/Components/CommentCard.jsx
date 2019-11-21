@@ -1,5 +1,6 @@
 import React from 'react'
 import Timestamp from 'react-timestamp'
+import { Link } from '@reach/router'
 import * as api from '../api'
 import Voter from './Voter'
 
@@ -19,9 +20,11 @@ const CommentCard = props => {
 
   return (
     <li className='comment-card'>
-      <h5>
-        {author}
-      </h5>
+      <Link to={`/users/${author}`}>
+        <h5>
+          {author}
+        </h5>
+      </Link>
       <p>
         {body}
       </p>
