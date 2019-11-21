@@ -32,6 +32,7 @@ class Voter extends Component {
     this.setState(currentState => {
       return { voteChange: currentState.voteChange + voteValue };
     });
+
     // Update DB for comments
     if (comment_id)
       api.patchCommentById(comment_id, voteValue).catch(() => {
@@ -39,6 +40,7 @@ class Voter extends Component {
           return { voteChange: currentState.voteChange - voteValue };
         });
       });
+
     // Update DB for articles
     if (article_id)
       api.patchArticleById(article_id, voteValue).catch(() => {
@@ -62,14 +64,15 @@ class Voter extends Component {
     }
 
     if (this.state.voteChange + voteValue === 0) {
-      const upBtn = document.getElementById('upvote');
-      const downBtn = document.getElementById('downvote');
-
-      upBtn.disabled = false;
-      downBtn.disabled = false;
-
-      upBtn.classList.remove('not-vote');
-      downBtn.classList.remove('not-vote');
+      if (button.id === 'downvote') {
+        const upBtn = e.target.parentElement.firstChild;
+        upBtn.disabled = false;
+        upBtn.classList.remove('not-vote');
+      } else {
+        const downBtn = e.target.parentElement.lastChild;
+        downBtn.disabled = false;
+        downBtn.classList.remove('not-vote');
+      }
     }
   };
 }
