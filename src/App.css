@@ -767,4 +767,9 @@ form .btn-primary {
   #user-articles #article-sub-menu #article-sort {
     width: 100%;
   }
+
+  #user-profile img {
+    height: 200px;
+    margin-top: 2.5%;
+  }
 }

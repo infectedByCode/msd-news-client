@@ -4,7 +4,7 @@ import { Alert } from 'react-bootstrap';
 import * as api from '../api';
 import CommentsList from './CommentsList';
 import CommentForm from './CommentForm';
-import { navigate } from '@reach/router';
+import { navigate, Link } from '@reach/router';
 import ErrorPage from './ErrorPage';
 import Voter from './Voter';
 
@@ -14,12 +14,14 @@ class SingleArticle extends Component {
     comments: [],
     isLoading: true,
     commentDeleted: false,
-    error: null
+    commentDeleteError: false,
+    error: null,
+    deleteError: null
   };
 
   render() {
     const { title, body, votes, topic, author, comment_count, created_at } = this.state.article;
-    const { comments, isLoading, commentDeleted, error } = this.state;
+    const { comments, isLoading, commentDeleted, error, deleteError, commentDeleteError } = this.state;
     const { currentUser, id, loggedIn } = this.props;
 
     if (isLoading) {
@@ -35,7 +37,6 @@ class SingleArticle extends Component {
 
     return (
       <main>
-        {/* Change it to be a component */}
         <h2>
           newsBits/{topic}
         </h2>
@@ -43,9 +44,11 @@ class SingleArticle extends Component {
           <h3>
             {title}
           </h3>
-          <h4>
-            {author}
-          </h4>
+          <Link to={`/users/${author}`}>
+            <h4>
+              {author}
+            </h4>
+          </Link>
           <p>
             {body}
           </p>
@@ -58,18 +61,21 @@ class SingleArticle extends Component {
             <button className="btn-danger" onClick={this.handleDeleteArticle}>
               Delete this
             </button>}
+          {deleteError && <Alert variant="danger">Error - Please try again!</Alert>}
         </article>
         <section>
           {loggedIn
             ? <CommentForm currentUser={currentUser} id={id} renderNewComment={this.renderNewComment} />
             : <Alert variant="danger">Please log in to post comments!</Alert>}
           {commentDeleted && <Alert variant="success">Comment removed!</Alert>}
+          {commentDeleteError && <Alert variant="danger">Error - Please try again!</Alert>}
           <CommentsList
             comments={comments}
             loggedIn={loggedIn}
             filterComments={this.filterComments}
             currentUser={currentUser}
             toggleCommentDeleted={this.toggleCommentDeleted}
+            toggleCommentError={this.toggleCommentError}
           />
         </section>
       </main>
@@ -124,6 +130,10 @@ class SingleArticle extends Component {
     this.setState(currentState => ({ commentDeleted: !currentState.commentDeleted }));
   };
 
+  toggleCommentError = () => {
+    this.setState(currentState => ({ commentDeleteError: !currentState.commentDeleteError }));
+  };
+
   handleDeleteArticle = () => {
     const { id } = this.props;
     api
@@ -131,7 +141,9 @@ class SingleArticle extends Component {
       .then(status => {
         if (status === 204) navigate('/');
       })
-      .catch(error => console.log(error.response));
+      .catch(error => {
+        if (error) this.setState({ deleteError: true });
+      });
   };
 }
 

@@ -6,16 +6,22 @@ import Voter from './Voter'
 
 const CommentCard = props => {
   const { author, created_at, votes, body, comment_id } = props.comment
-  const { currentUser, loggedIn, filterComments, toggleCommentDeleted } = props
+  const { currentUser, loggedIn, filterComments, toggleCommentDeleted, toggleCommentError } = props
 
   const handleClick = () => {
-    api.deleteCommentById(comment_id).then(status => {
-      if (status === 204) {
-        filterComments(comment_id)
-        toggleCommentDeleted()
-      }
-    })
-    setTimeout(toggleCommentDeleted, 3000)
+    api
+      .deleteCommentById(comment_id)
+      .then(status => {
+        if (status === 204) {
+          filterComments(comment_id)
+          toggleCommentDeleted()
+          setTimeout(toggleCommentDeleted, 3000)
+        }
+      })
+      .catch(error => {
+        if (error) toggleCommentError()
+        setTimeout(toggleCommentError, 3000)
+      })
   }
 
   return (
