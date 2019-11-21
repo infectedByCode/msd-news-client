@@ -2,7 +2,7 @@
 
 A reddit-style news site for creating and sharing articles on various topics. Users are able to create, comment and delete articles, create and delete comments as well as upvote comments and articles written by other users. 
 
-This frontend Reach App works with a backend API created with NodeJS and Express. This API can be seen [here](https://msd-news.herokuapp.com/api) and the GitHub repository can be [found here]('https://github.com/infectedByCode/news-site').
+This frontend [React](https://reactjs.org/) App works with a backend API created with NodeJS and Express. This API can be seen [here](https://msd-news.herokuapp.com/api) and the GitHub repository can be [found here]('https://github.com/infectedByCode/news-site').
 
 Before clone, you may with to visit the demo for the app [here]('www.google.com').
 
@@ -11,10 +11,6 @@ Before clone, you may with to visit the demo for the app [here]('www.google.com'
 ---
 
 These instructions will get you a copy of the project up and running on your local machine for development and testing purposes.
-
-### Prerequisites
-
-#?????
 
 ### Installing
 
