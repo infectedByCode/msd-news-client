@@ -62,7 +62,7 @@ export const patchCommentById = async (id, vote) => {
   return data.comment
 }
 
-export const getTopics = async () => {
-  const { data } = await axios.get(`${baseUrl}/topics`)
+export const getTopics = async (limit = 3) => {
+  const { data } = await axios.get(`${baseUrl}/topics`, { params: { limit } })
   return data.topics
 }
