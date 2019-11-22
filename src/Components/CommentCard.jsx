@@ -6,7 +6,7 @@ import Voter from './Voter'
 
 const CommentCard = props => {
   const { author, created_at, votes, body, comment_id } = props.comment
-  const { currentUser, loggedIn, filterComments, toggleCommentDeleted, toggleCommentError } = props
+  const { currentUser, filterComments, toggleCommentDeleted, toggleCommentError } = props
 
   const handleClick = () => {
     api
@@ -39,7 +39,7 @@ const CommentCard = props => {
         <button className='btn-danger' onClick={handleClick}>
           Delete
         </button>}
-      {currentUser !== author && <Voter comment_id={comment_id} votes={votes} loggedIn={loggedIn} />}
+      {currentUser !== author && <Voter comment_id={comment_id} votes={votes} currentUser={currentUser} />}
     </li>
   )
 }

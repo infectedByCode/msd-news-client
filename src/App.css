@@ -490,6 +490,7 @@ form .btn-primary {
 
 #user-profile img {
   height: 400px;
+  margin: 1.5% auto;
 }
 
 #user-articles main .list {
@@ -556,6 +557,10 @@ form .btn-primary {
     height: auto;
   }
 
+  header nav form select {
+    height: 100px;
+  }
+
   main {
     padding-top: 0px;
   }
@@ -610,6 +615,10 @@ form .btn-primary {
   /* Comments */
   section ul {
     width: 80%;
+  }
+
+  .comment-card p {
+    grid-column: 1/8;
   }
 
   /* USERS  */

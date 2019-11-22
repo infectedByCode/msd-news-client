@@ -7,7 +7,7 @@ class Voter extends Component {
   };
 
   render() {
-    const { votes, loggedIn } = this.props;
+    const { votes } = this.props;
     const { voteChange } = this.state;
 
     return (
@@ -24,6 +24,22 @@ class Voter extends Component {
       </div>
     );
   }
+
+  componentDidMount() {
+    this.disableButtons();
+  }
+
+  disableButtons = () => {
+    const { currentUser } = this.props;
+    const buttons = document.querySelectorAll('.vote-btn');
+
+    if (currentUser === '') {
+      buttons.forEach(button => {
+        button.disabled = true;
+        button.classList.add('not-vote');
+      });
+    }
+  };
 
   handleVote = (e, voteValue) => {
     this.styleVoteBtns(e, voteValue);

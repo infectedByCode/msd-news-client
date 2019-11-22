@@ -51,7 +51,7 @@ class SingleArticle extends Component {
             Comments:{comment_count}
           </p>
           <Timestamp class="article-timestamp" relative date={created_at} />
-          {loggedIn && <Voter votes={votes} article_id={id} />}
+          {loggedIn && <Voter votes={votes} article_id={id} currentUser={currentUser} />}
           {currentUser === author &&
             <button className="btn-danger" onClick={this.handleDeleteArticle}>
               Delete this
