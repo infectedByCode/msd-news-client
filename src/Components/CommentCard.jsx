@@ -39,7 +39,7 @@ const CommentCard = props => {
         <button className='btn-danger' onClick={handleClick}>
           Delete
         </button>}
-      {loggedIn && currentUser !== author && <Voter comment_id={comment_id} votes={votes} />}
+      {currentUser !== author && <Voter comment_id={comment_id} votes={votes} loggedIn={loggedIn} />}
     </li>
   )
 }

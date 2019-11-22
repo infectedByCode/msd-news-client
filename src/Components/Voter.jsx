@@ -7,9 +7,9 @@ class Voter extends Component {
   };
 
   render() {
-    const { votes } = this.props;
-
+    const { votes, loggedIn } = this.props;
     const { voteChange } = this.state;
+
     return (
       <div className="vote-block">
         <button id="upvote" className="vote-btn" onClick={e => this.handleVote(e, 1)}>

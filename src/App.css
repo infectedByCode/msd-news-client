@@ -66,33 +66,39 @@ lavender #b9b8d3
 
 /* General layout */
 
-footer {
-  background-color: var(--nav-bg-color);
-  color: var(--alt-text-color);
-  padding: 1% 0;
-  margin: 1% 0 0 0;
+header {
+  position: fixed;
+  z-index: 1;
+  width: 100%;
 }
 
 header nav {
+  height: 80px;
   display: grid;
   grid-template-columns: 4fr 2fr 2fr 2fr;
   background-color: var(--nav-bg-color);
 }
+
 header nav a {
   color: var(--alt-text-color);
   text-align: center;
   text-decoration: none;
-  padding: 5% 0% 0% 0%;
-  line-height: 2.25rem;
+  font-size: 1.2em;
+  line-height: 80px;
 }
 
 header nav form {
   display: flex;
+  width: 100%;
   justify-content: center;
+  padding: 0;
+  margin: 0;
 }
 
 header nav form select {
   background: #fff;
+  height: 60px;
+  margin-top: 10px;
 }
 
 header nav form button {
@@ -104,6 +110,9 @@ header nav form button {
   font: inherit;
   cursor: pointer;
   outline: inherit;
+  font-size: 1.2em;
+  line-height: 80px;
+  height: 80px;
 }
 
 header nav a:hover {
@@ -112,19 +121,15 @@ header nav a:hover {
   color: rgb(235, 233, 233);
 }
 
-header nav h1 {
-  text-align: center;
-  grid-column: 1/6;
+main {
+  padding-top: 80px;
 }
 
-#login {
-  background: none;
-  color: white;
-  border: none;
-  font: inherit;
-  cursor: pointer;
-  outline: inherit;
-  line-height: 2.25rem;
+footer {
+  background-color: var(--nav-bg-color);
+  color: var(--alt-text-color);
+  padding: 1% 0;
+  margin: 1% 0 0 0;
 }
 
 /* Side content */
@@ -485,7 +490,6 @@ form .btn-primary {
 
 #user-profile img {
   height: 400px;
-  margin: 2%;
 }
 
 #user-articles main .list {
@@ -535,10 +539,27 @@ form .btn-primary {
   .topic-card h2 {
     font-size: 1em;
   }
+
+  header nav form {
+    width: 100%;
+  }
 }
 
 /* Tablet */
 @media only screen and (max-width: 1250px) {
+  /* Layout */
+  header {
+    position: relative;
+  }
+
+  header nav {
+    height: auto;
+  }
+
+  main {
+    padding-top: 0px;
+  }
+
   /* aside topic bar */
   aside ul {
     display: flex;
