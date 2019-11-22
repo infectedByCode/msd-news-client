@@ -8,8 +8,8 @@ class Header extends Component {
 
   handleSubmit = e => {
     const { user } = this.state;
-
-    this.props.handleSignIn(user);
+    const URL = document.URL;
+    this.props.handleSignIn(user, URL);
   };
 
   handleChange = e => {
@@ -28,13 +28,14 @@ class Header extends Component {
           </Link>
           <Link to="/">Home</Link>
           <form onSubmit={this.handleSubmit}>
-            {!loggedIn && 
+            {!loggedIn &&
               <select onChange={this.handleChange}>
-                {loggedIn && <option value={currentUser}>Logged in as {currentUser}</option>}
-            <>
+                {loggedIn &&
+                  <option value={currentUser}>
+                    Logged in as {currentUser}
+                  </option>}
                 <option value="weegembump">weegembump</option>
                 <option value="jessjelly">jessjelly</option>
-                </>
               </select>}
             <button>
               {loggedIn ? 'Logout' : 'Login'}

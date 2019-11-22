@@ -16,17 +16,6 @@ class App extends Component {
     loggedIn: false
   };
 
-  componentDidMount() {
-    const { currentUser, loggedIn } = this.state;
-    const user = JSON.parse(localStorage.getItem('user'));
-
-    if (user && user.loggedIn) {
-      this.setState({ currentUser: user.currentUser, loggedIn: true });
-    } else {
-      localStorage.setItem('user', JSON.stringify({ currentUser: currentUser, loggedIn: loggedIn }));
-    }
-  }
-
   render() {
     const { currentUser, loggedIn } = this.state;
     return (
@@ -44,7 +33,18 @@ class App extends Component {
     );
   }
 
-  handleSignIn = user => {
+  componentDidMount() {
+    const { currentUser, loggedIn } = this.state;
+    const user = JSON.parse(localStorage.getItem('user'));
+
+    if (user && user.loggedIn) {
+      this.setState({ currentUser: user.currentUser, loggedIn: true });
+    } else {
+      localStorage.setItem('user', JSON.stringify({ currentUser: currentUser, loggedIn: loggedIn }));
+    }
+  }
+
+  handleSignIn = (user, URL) => {
     this.setState(currentState => {
       if (currentState.currentUser) {
         localStorage.setItem('user', JSON.stringify({ currentUser: '', loggedIn: false }));
@@ -54,7 +54,8 @@ class App extends Component {
         return { currentUser: user, loggedIn: true };
       }
     });
-    navigate('/');
+    if (URL.includes('/users/')) navigate('/');
+    else navigate(URL);
   };
 }
 
