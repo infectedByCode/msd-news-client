@@ -7,6 +7,7 @@ import CommentForm from './CommentForm';
 import { navigate, Link } from '@reach/router';
 import ErrorPage from './ErrorPage';
 import Voter from './Voter';
+import loadingIcon from '../assets/loading.gif';
 
 class SingleArticle extends Component {
   state = {
@@ -25,13 +26,7 @@ class SingleArticle extends Component {
     const { currentUser, id, loggedIn } = this.props;
 
     if (isLoading) {
-      return (
-        <img
-          id="loadingGif"
-          src="https://upload.wikimedia.org/wikipedia/commons/c/c7/Loading_2.gif"
-          alt="loading page"
-        />
-      );
+      return <img id="loadingGif" src={loadingIcon} alt="loading page" />;
     }
     if (error) return <ErrorPage error={error} />;
 

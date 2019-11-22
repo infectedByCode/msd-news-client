@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import ErrorPage from './ErrorPage';
 import ArticleList from './ArticleList';
 import * as api from '../api';
+import loadingIcon from '../assets/loading.gif';
+import defaultAvatar from '../assets/default-avatar.png';
 
 class User extends Component {
   state = {
@@ -13,25 +15,14 @@ class User extends Component {
   render() {
     const { userData: { username, name, avatar_url }, isLoading, error } = this.state;
     const { currentUser, loggedIn } = this.props;
-    if (isLoading)
-      return (
-        <img
-          id="loadingGif"
-          src="https://upload.wikimedia.org/wikipedia/commons/c/c7/Loading_2.gif"
-          alt="loading page"
-        />
-      );
+    if (isLoading) return <img id="loadingGif" src={loadingIcon} alt="loading page" />;
 
     if (error) return <ErrorPage error={error} />;
 
     return (
       <main id="user-layout">
         <section id="user-profile">
-          <img
-            src={avatar_url}
-            alt={`${name} profile`}
-            onError={e => (e.target.src = 'https://upload.wikimedia.org/wikipedia/commons/f/fe/Avatar_Miau.png')}
-          />
+          <img src={avatar_url} alt={`${name} profile`} onError={this.handleImageError} />
           <h1>
             {username}
           </h1>
@@ -56,6 +47,13 @@ class User extends Component {
     api.getUser(username).then(user => this.setState({ userData: user, isLoading: false })).catch(error => {
       const { status, msg } = error.response;
       this.setState({ error: { status, msg }, isLoading: false });
+    });
+  };
+
+  handleImageError = () => {
+    this.setState(currentState => {
+      const userCopy = { ...currentState.userData };
+      return { userData: { ...userCopy, avatar_url: defaultAvatar } };
     });
   };
 }

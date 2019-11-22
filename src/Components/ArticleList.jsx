@@ -5,6 +5,7 @@ import ArticleCard from './ArticleCard';
 import ArticleSelect from './ArticleSelect';
 import ArticleForm from './ArticleForm';
 import ErrorPage from './ErrorPage';
+import loadingIcon from '../assets/loading.gif';
  
 class ArticleList extends Component {
   state = {
@@ -27,7 +28,7 @@ class ArticleList extends Component {
       return (
         <img
           id="loadingGif"
-          src="https://upload.wikimedia.org/wikipedia/commons/c/c7/Loading_2.gif"
+          src={loadingIcon}
           alt="loading page"
           />
       );
