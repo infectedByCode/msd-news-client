@@ -4,7 +4,7 @@ A reddit-style news site for creating and sharing articles on various topics. Us
 
 This frontend [React](https://reactjs.org/) App works with a backend API created with NodeJS and Express. This API can be seen [here](https://msd-news.herokuapp.com/api) and the GitHub repository can be [found here]('https://github.com/infectedByCode/news-site').
 
-Before clone, you may with to visit the demo for the app [here]('www.google.com').
+Before cloning, you may with to visit the demo for the app [here](https://newsbits.netlify.com/).
 
 ## Getting Started
 
@@ -15,6 +15,14 @@ These instructions will get you a copy of the project up and running on your loc
 ### Installing
 
 A step by step guide to getting the project running on your local machine.
+
+
+#### Prerequisites
+
+In order to get the app running on your local machine, you will require the following installed.
+
+- [NodeJS v.8.10](https://nodejs.org/en/)
+- [npm](https://www.npmjs.com/)
 
 #### Cloning to local machine
 
