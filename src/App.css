@@ -137,6 +137,15 @@ footer {
   margin: 15% 0 0 0;
 }
 
+input,
+select,
+textarea {
+  background-color: #fff;
+  border-style: solid;
+  border-width: 1px;
+  border-color: var(--nav-bg-color);
+}
+
 /* Side content */
 
 aside {
