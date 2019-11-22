@@ -28,17 +28,20 @@ class Header extends Component {
           </Link>
           <Link to="/">Home</Link>
           <form onSubmit={this.handleSubmit}>
-            {!loggedIn &&
+            {!loggedIn && 
               <select onChange={this.handleChange}>
+                {loggedIn && <option value={currentUser}>Logged in as {currentUser}</option>}
+            <>
                 <option value="weegembump">weegembump</option>
                 <option value="jessjelly">jessjelly</option>
+                </>
               </select>}
             <button>
-              {loggedIn ? 'Logout' : 'login'}
+              {loggedIn ? 'Logout' : 'Login'}
             </button>
           </form>
           <Link to={`/users/${currentUser}`}>
-            {loggedIn ? `Hello, ${currentUser}` : ''}
+            {loggedIn && <p>View Profile</p>}
           </Link>
         </nav>
       </header>
