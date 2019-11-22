@@ -20,6 +20,11 @@ object {
   pointer-events: none;
 }
 
+button:focus {
+  outline: none !important;
+  border: none !important;
+}
+
 /* 
 brown #463730
 dark blue #1f5673
