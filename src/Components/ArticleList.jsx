@@ -101,6 +101,7 @@ class ArticleList extends Component {
       this.setState(currentState => {
         return {scrollCount: currentState.scrollCount + limit, isScrollLoading: true};
       })
+      window.scrollTo(window.scrollX, window.scrollY - 75)
     }
   }
 
