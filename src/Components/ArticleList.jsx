@@ -10,6 +10,7 @@ import loadingIcon from '../assets/loading.gif';
 class ArticleList extends Component {
   state = {
     articleData: [],
+    filteredData: [],
     sort_by: 'created_at',
     order: 'desc',
     scrollCount: 5,
@@ -21,7 +22,7 @@ class ArticleList extends Component {
   };
 
   render() {
-    const { articleData, isLoading, error, contScroll, isScrollLoading } = this.state;
+    const { filteredData, articleData, isLoading, error, contScroll, isScrollLoading } = this.state;
     const { currentUser, loggedIn, author} = this.props;
 
     if (isLoading) {
@@ -45,10 +46,11 @@ class ArticleList extends Component {
             : <h2>Articles</h2>}
           {loggedIn && !author && <><h3>Post a new article</h3><ArticleForm currentUser={currentUser} renderNewArticle={this.renderNewArticle} /></>}
           {!loggedIn && <Alert variant="danger">Login to post new articles and vote!</Alert>}
+          <input onChange={this.handleChange} />
           <ArticleSelect updateSort={this.updateSort} />
         </div>
-        <ul className="list" onScroll={()=>{console.log('heeeyyyy')}}>
-          {articleData.map(article => {
+        <ul className="list">
+          {filteredData.map(article => {
             return <ArticleCard article={article} key={article.id} className="article-card" currentUser={currentUser}/>;
           })}
         </ul>
@@ -75,6 +77,12 @@ class ArticleList extends Component {
       ) {
       this.fetchArticleData();
     }
+
+    if (prevState.articleData !== this.state.articleData){
+      this.setState(currentState =>{
+        return {filteredData: [...currentState.articleData]}
+      })
+    }
   }
     
   componentWillUnmount () {
@@ -89,6 +97,17 @@ class ArticleList extends Component {
         return {scrollCount: currentState.scrollCount + limit, isScrollLoading: true};
       })
     }
+  }
+
+  handleChange = (e) => {
+    const input = e.target.value.toLowerCase() || '';
+
+    this.setState(currentState => {
+      const articlesCopy = [...currentState.articleData]
+      const filteredData = articlesCopy.filter(article => article.title.toLowerCase().includes(input))
+  
+      return {filteredData}
+    })
   }
   
   fetchArticleData = () => {
