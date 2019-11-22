@@ -10,6 +10,7 @@ import loadingIcon from '../assets/loading.gif';
 class ArticleList extends Component {
   state = {
     articleData: [],
+    filterInput: '',
     filteredData: [],
     sort_by: 'created_at',
     order: 'desc',
@@ -22,7 +23,7 @@ class ArticleList extends Component {
   };
 
   render() {
-    const { filteredData, articleData, isLoading, error, contScroll, isScrollLoading } = this.state;
+    const { filteredData, filterInput, isLoading, error, contScroll, isScrollLoading } = this.state;
     const { currentUser, loggedIn, author} = this.props;
 
     if (isLoading) {
@@ -46,7 +47,8 @@ class ArticleList extends Component {
             : <h2>Articles</h2>}
           {loggedIn && !author && <><h3>Post a new article</h3><ArticleForm currentUser={currentUser} renderNewArticle={this.renderNewArticle} /></>}
           {!loggedIn && <Alert variant="danger">Login to post new articles and vote!</Alert>}
-          <input onChange={this.handleChange} />
+          <label htmlFor="filterbar">Filter Articles</label>
+          <input id="filter-input" name="filterbar" value={filterInput} onChange={this.handleChange} />  
           <ArticleSelect updateSort={this.updateSort} />
         </div>
         <ul className="list">
@@ -82,7 +84,10 @@ class ArticleList extends Component {
       this.setState(currentState =>{
         return {filteredData: [...currentState.articleData]}
       })
+      this.renderFilter()
     }
+
+    if (prevState.filterInput !== this.state.filterInput) this.renderFilter()
   }
     
   componentWillUnmount () {
@@ -101,12 +106,17 @@ class ArticleList extends Component {
 
   handleChange = (e) => {
     const input = e.target.value.toLowerCase() || '';
+    this.setState({filterInput: input})
+  }
 
-    this.setState(currentState => {
+  renderFilter =()=> {
+  const {filterInput} = this.state
+    
+  this.setState(currentState => {
       const articlesCopy = [...currentState.articleData]
-      const filteredData = articlesCopy.filter(article => article.title.toLowerCase().includes(input))
-  
-      return {filteredData}
+      const filteredData = articlesCopy.filter(article => article.title.toLowerCase().includes(filterInput))
+
+      return { filteredData }
     })
   }
   

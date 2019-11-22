@@ -129,7 +129,7 @@ footer {
   background-color: var(--nav-bg-color);
   color: var(--alt-text-color);
   padding: 1% 0;
-  margin: 1% 0 0 0;
+  margin: 15% 0 0 0;
 }
 
 /* Side content */
@@ -201,6 +201,13 @@ aside ul a {
   display: flex;
   flex-direction: column;
   justify-content: center;
+}
+
+#filter-input {
+  display: block;
+  width: 60%;
+  height: 50px;
+  margin: 0 auto;
 }
 
 .card a li {
