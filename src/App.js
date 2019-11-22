@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.css';
-import { Router } from '@reach/router';
+import { Router, navigate } from '@reach/router';
 import Header from './Components/Header';
 import Homepage from './Components/Homepage';
 import SingleTopic from './Components/SingleTopic';
@@ -54,6 +54,7 @@ class App extends Component {
         return { currentUser: user, loggedIn: true };
       }
     });
+    navigate('/');
   };
 }
 
