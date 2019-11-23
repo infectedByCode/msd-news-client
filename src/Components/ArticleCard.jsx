@@ -25,7 +25,7 @@ const ArticleCard = props => {
           </p>
         </li>
       </Link>
-      <Voter votes={article.votes} currentUser={currentUser} author={article.author} />
+      <Voter votes={article.votes} currentUser={currentUser} author={article.author} article_id={article.id} />
     </div>
   )
 }

@@ -43,8 +43,8 @@ class Voter extends Component {
 
   handleVote = (e, voteValue) => {
     this.styleVoteBtns(e, voteValue);
-
     const { comment_id, article_id } = this.props;
+
     // Update visable state
     this.setState(currentState => {
       return { voteChange: currentState.voteChange + voteValue };
