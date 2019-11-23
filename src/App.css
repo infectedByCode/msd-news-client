@@ -565,6 +565,13 @@ form .btn-primary {
   header nav form {
     width: 100%;
   }
+
+  .comment-card {
+    background: #09d3ac;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
 }
 
 /* Tablet */
@@ -861,6 +868,7 @@ form .btn-primary {
     grid-column: 1/7;
     grid-row: 5/6;
     width: 80%;
+    text-align: center;
   }
 
   /* USER  */
