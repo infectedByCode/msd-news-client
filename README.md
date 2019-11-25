@@ -2,7 +2,9 @@
 
 A reddit-style news site for creating and sharing articles on various topics. Users are able to create, comment and delete articles, create and delete comments as well as upvote comments and articles written by other users. 
 
-This frontend [React](https://reactjs.org/) App works with a backend API created with NodeJS and Express. This API can be seen [here](https://msd-news.herokuapp.com/api) and the GitHub repository can be [found here]('https://github.com/infectedByCode/news-site').
+This frontend [React](https://reactjs.org/) App works with a backend API created with NodeJS and Express. 
+
+The API for this project can be seen [here](https://msd-news.herokuapp.com/api) and the GitHub repository can be [found here]('https://github.com/infectedByCode/news-site').
 
 Before cloning, you may with to visit the demo for the app [here](https://newsbits.netlify.com/).
 
