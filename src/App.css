@@ -480,6 +480,13 @@ form select {
   width: 100%;
 }
 
+form textarea:required,
+form input:required,
+form textarea:invalid,
+form input:invalid {
+  box-shadow: none;
+}
+
 form textarea {
   min-height: 200px;
 }
