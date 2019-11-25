@@ -65,10 +65,6 @@ lavender #b9b8d3
   color: white;
 }
 
-.App-link {
-  color: #09d3ac;
-}
-
 /* General layout */
 
 header {
@@ -567,7 +563,6 @@ form .btn-primary {
   }
 
   .comment-card {
-    background: #09d3ac;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -591,6 +586,11 @@ form .btn-primary {
 
   main {
     padding-top: 0px;
+  }
+
+  #filter-input,
+  #article-sort {
+    width: 80%;
   }
 
   /* aside topic bar */
@@ -831,6 +831,10 @@ form .btn-primary {
   main #article-sub-menu form select {
     width: 80%;
     margin: 2.5% 0;
+  }
+
+  main ul .card h2 {
+    font-size: 0.9em;
   }
 
   /* Comments */
