@@ -1,19 +1,25 @@
 import React, { Component } from 'react';
+import { Alert } from 'react-bootstrap';
 import * as api from '../api';
+import { throwStatement } from '@babel/types';
 
 class ArticleForm extends Component {
   state = {
     titleInput: '',
     bodyInput: '',
     topicInput: '',
-    topicData: []
+    topicData: [],
+    articleCreated: false,
+    isCreationError: false
   };
 
   render() {
-    const { titleInput, bodyInput, topicData } = this.state;
+    const { titleInput, bodyInput, topicData, articleCreated, isCreationError } = this.state;
 
     return (
       <form id="article-form" onSubmit={this.handleSubmit}>
+        {articleCreated && <Alert variant="success">Article created</Alert>}
+        {isCreationError && <Alert variant="danger">Error creating article, please try again.</Alert>}
         <label>
           title:
           <input type="text" name="titleInput" value={titleInput} onChange={this.handleChange} required />
@@ -64,9 +70,15 @@ class ArticleForm extends Component {
     const { titleInput, bodyInput, topicInput } = this.state;
     const { currentUser } = this.props;
 
-    api.postArticle(titleInput, bodyInput, topicInput, currentUser).then(article => {
-      this.props.renderNewArticle(article);
-    });
+    api
+      .postArticle(titleInput, bodyInput, topicInput, currentUser)
+      .then(article => {
+        this.props.renderNewArticle(article);
+        this.setState({ articleCreated: true });
+      })
+      .catch(error => {
+        if (error) this.setState({ isCreationError: true });
+      });
     e.target[2].selectedIndex = 0;
     this.setState({ titleInput: '', bodyInput: '' });
   };
