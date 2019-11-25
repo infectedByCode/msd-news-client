@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { Alert } from 'react-bootstrap';
 import * as api from '../api';
-import { throwStatement } from '@babel/types';
 
 class ArticleForm extends Component {
   state = {
