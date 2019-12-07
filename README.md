@@ -1,8 +1,8 @@
 # NEWS SITE
 
-A reddit-style news site for creating and sharing articles on various topics. Users are able to create, comment and delete articles, create and delete comments as well as upvote comments and articles written by other users. 
+A reddit-style news site for creating and sharing articles on various topics. Users are able to create, comment and delete articles, create and delete comments as well as upvote comments and articles written by other users.
 
-This frontend [React](https://reactjs.org/) App works with a backend API created with NodeJS and Express. 
+This frontend [React](https://reactjs.org/) App works with a backend API created with NodeJS and Express.
 
 The API for this project can be seen [here](https://msd-news.herokuapp.com/api) and the GitHub repository can be [found here]('https://github.com/infectedByCode/news-site').
 
@@ -18,7 +18,6 @@ These instructions will get you a copy of the project up and running on your loc
 
 A step by step guide to getting the project running on your local machine.
 
-
 #### Prerequisites
 
 In order to get the app running on your local machine, you will require the following installed.
@@ -31,13 +30,14 @@ In order to get the app running on your local machine, you will require the foll
 1. Go to the root of the repository [here]('https://github.com/infectedByCode/msd-news-client').
 2. Fork the repository to your GitHub account.
 3. Once forked, you will be given a git link. Copy this link.
-4. Open up a terminal on your local machine and type `git clone https://github.com/YOUR-USERNAME/YOUR-REPOSITORY` and press *Enter*. Your local clone will then be created. 
+4. Open up a terminal on your local machine and type `git clone https://github.com/YOUR-USERNAME/YOUR-REPOSITORY` and press _Enter_. Your local clone will then be created.
 
 #### Installing packages
 
-The following packages will be required to get the API working locally. 
+The following packages will be required to get the API working locally.
 
 ##### Production Packages
+
 - @reach/router
 - axios
 - bootstrap
@@ -48,28 +48,16 @@ The following packages will be required to get the API working locally.
 - react-scripts
 - react-timestamp
 
-To install all, type `npm install` and press *Enter*. The packages will be installed from the package.json.
+To install all, type `npm install` and press _Enter_. The packages will be installed from the package.json.
 
 ## Available Scripts
 
-In the project directory, you can run:
+Running the, you can run:
 
 ### `npm start`
 
-Runs the app in the development mode.<br />
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
-
-The page will reload if you make edits.<br />
-You will also see any lint errors in the console.
-
-### `npm test`
-
-Launches the test runner in the interactive watch mode.<br />
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+This will run the app in development mode. Site will be available on localhost:/3000 in a browser.
 
 ### `npm run build`
 
-Builds the app for production to the `build` folder.<br />
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.
+Creates a production version on the app with all relevant files required.
