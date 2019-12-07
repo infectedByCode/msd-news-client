@@ -616,7 +616,7 @@ form .btn-primary {
     width: 80%;
   }
 
-  #article-sub-menu  .alert-danger {
+  #article-sub-menu .alert-danger {
     width: 80%;
   }
 
@@ -736,7 +736,7 @@ form .btn-primary {
     margin: 0;
   }
 
-  .list a  li {
+  .list a li {
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -752,17 +752,17 @@ form .btn-primary {
     margin: 0 auto 2.5% auto;
   }
 
-  #homepage-layout .list a  li h2 {
+  #homepage-layout .list a li h2 {
     font-size: 0.9em;
     text-align: left;
   }
 
-  #homepage-layout .list a  li h3 {
+  #homepage-layout .list a li h3 {
     text-align: left;
     font-size: 0.8em;
   }
 
-  #homepage-layout .list a  li h4 {
+  #homepage-layout .list a li h4 {
     text-align: left;
     font-size: 1.2em;
   }
@@ -793,7 +793,7 @@ form .btn-primary {
   /* Single Article */
 
   main h2 {
-    font-size: 1.4em;
+    font-size: 1.2em;
   }
 
   main article {
