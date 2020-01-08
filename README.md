@@ -34,7 +34,7 @@ In order to get the app running on your local machine, you will require the foll
 
 #### Installing packages
 
-The following packages will be required to get the API working locally.
+The following packages will be required to get the project working locally.
 
 ##### Production Packages
 
